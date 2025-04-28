@@ -1,0 +1,847 @@
+/* === iOS-Specific Tweaks === */
+@supports (-webkit-touch-callout: none) {
+  html,
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-smoothing: antialiased !important;
+    background: #181c22 !important;
+  }
+  button,
+  .btn,
+  .btn-sm,
+  .btn-primary,
+  .preset-btn,
+  .solution-btn {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    touch-action: manipulation !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* === Dashboard & Chart Containers: Mobile/iOS Layout === */
+@media (max-width: 700px) {
+  .dashboard-container,
+  .simulator-container,
+  .calculator-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    padding: 0 0 18px 0 !important;
+    margin: 0 auto 18px auto !important;
+    box-sizing: border-box !important;
+  }
+  .dashboard-panel,
+  .chart-container,
+  .panel,
+  .panel-content {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0 auto 10px auto !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+    padding: 10px 2vw !important;
+    overflow-x: auto !important;
+    background: rgba(20, 24, 32, 0.98) !important;
+  }
+  .chart-container,
+  .pie-chart-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
+  }
+}
+
+/* === Touch Interaction & Scroll Improvements for Charts/Panels === */
+@media (max-width: 700px) {
+  .chart-container,
+  .pie-chart-container,
+  .market-charts-container,
+  .metrics-visualization {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-x: auto !important;
+    touch-action: pan-x pan-y !important;
+    scroll-behavior: smooth !important;
+  }
+  .chart-container canvas,
+  .pie-chart-container canvas {
+    touch-action: manipulation !important;
+    pointer-events: auto !important;
+    min-width: 320px !important;
+    max-width: 100vw !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* === Mobile Navigation Optimizations for iOS === */
+@media (max-width: 700px) {
+  #navbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    min-width: 0 !important;
+    z-index: 1000 !important;
+    background: var(--navbar-bg, #181818) !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow: visible !important;
+  }
+  .nav-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 44px !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 4px !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+  .nav-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: absolute !important;
+    top: 44px !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    background: var(--navbar-bg, #111) !important;
+    z-index: 1002 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1rem !important;
+    font-family: inherit !important;
+    text-align: center !important;
+    overflow-y: auto !important;
+    max-height: 70vh !important;
+    transition: max-height 0.3s;
+    display: none !important;
+    gap: 8px !important;
+  }
+  .nav-menu.active {
+    display: flex !important;
+  }
+  .nav-menu li {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    min-height: 36px !important;
+  }
+  .nav-menu a {
+    width: 100vw !important;
+    padding: 10px 0 !important;
+    border-radius: 0 !important;
+    font-size: 1rem !important;
+    color: #fff !important;
+    background: none !important;
+    display: block !important;
+    min-width: 44px !important;
+    min-height: 36px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: visible !important;
+  }
+  .nav-menu a:active,
+  .nav-menu a:focus {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--accent-color, #ffd700) !important;
+  }
+  .hamburger-menu {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: absolute !important;
+    right: 6px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 36px !important;
+    height: 36px !important;
+    background: #232323 !important;
+    border-radius: 6px !important;
+    z-index: 1001 !important;
+    font-size: 1.5rem !important;
+    color: #fff !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    overflow: visible !important;
+  }
+  /* HERO SECTION MOBILE OPTIMIZATION */
+  #hero.hero-section {
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    min-height: 60vh !important;
+  }
+  .hero-content {
+    padding: 12px 4vw 24px 4vw !important;
+    max-width: 100vw !important;
+  }
+  .tech-logo-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    margin: 0 auto 18px auto !important;
+    padding: 0 !important;
+    z-index: 3 !important;
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transform: none !important;
+  }
+  .tech-logo {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    height: auto !important;
+    display: block !important;
+    z-index: 3 !important;
+    position: relative !important;
+    margin: 0 auto !important;
+  }
+  .glitch-container {
+    margin-bottom: 10px !important;
+  }
+  .terminal-heading.glitch-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 8px !important;
+  }
+  .subtitle-wrapper,
+  .typing-container {
+    font-size: 1.1rem !important;
+    margin-bottom: 8px !important;
+  }
+  .section-description {
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+  }
+  .hero-description {
+    font-size: 1rem !important;
+    margin-bottom: 18px !important;
+  }
+  .theme-selector-label {
+    font-size: 1rem !important;
+    margin-bottom: 6px !important;
+    justify-content: center !important;
+  }
+  .theme-toggles {
+    margin-left: 0 !important;
+  }
+  /* Restore and optimize theme color squares/buttons row for mobile */
+  .theme-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    margin: 8px 0 12px 0 !important;
+    width: 100% !important;
+    padding: 0 !important;
+    z-index: 2 !important;
+    position: relative !important;
+    row-gap: 8px !important;
+  }
+  .theme-btn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.2rem !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 2px !important;
+    padding: 0 !important;
+  }
+  .theme-btn .theme-icon {
+    font-size: 1.2em !important;
+    pointer-events: none;
+  }
+  .theme-btn.active,
+  .theme-btn:focus {
+    outline: 2px solid var(--accent-color, #00fff7) !important;
+    background: none !important;
+    color: var(--accent-color, #00fff7) !important;
+  }
+  .theme-btn:active {
+    transform: scale(0.95);
+  }
+  .hero-theme-toggle {
+    display: flex !important;
+    margin: 0 auto 6px auto !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1.2rem !important;
+    border-radius: 50% !important;
+    box-shadow: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: none !important;
+    border: none !important;
+    z-index: 2 !important;
+    position: relative !important;
+    padding: 0 !important;
+  }
+  .hero-theme-toggle i {
+    font-size: 1.2em !important;
+  }
+  /* Connect button: full width, larger tap target */
+  .connect-button.hero-connect {
+    width: 100% !important;
+    max-width: 320px !important;
+    font-size: 1.1rem !important;
+    padding: 16px 0 !important;
+    margin: 16px auto 0 auto !important;
+    border-radius: 8px !important;
+    letter-spacing: 2px !important;
+    margin-top: 10px !important;
+  }
+  .tech-logo-container {
+    margin-bottom: 8px !important;
+  }
+  .section-description {
+    margin-bottom: 6px !important;
+  }
+  .hero-actions {
+    margin-bottom: 48px !important;
+    z-index: 2 !important;
+    position: relative !important;
+  }
+  .scroll-indicator {
+    margin-top: 24px !important;
+    z-index: 1 !important;
+    position: relative !important;
+    display: block !important;
+  }
+  /* About/Bio Section Mobile Particle Look */
+  #introduction .profile-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 18px !important;
+    padding: 18px 2vw 18px 2vw !important;
+    background: rgba(20, 24, 32, 0.92) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 6px 32px 0 rgba(0, 0, 0, 0.18),
+      0 1.5px 8px 0 rgba(0, 255, 255, 0.08) !important;
+    margin: 0 auto 18px auto !important;
+    width: 98vw !important;
+    max-width: 420px !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+  #introduction .profile-image {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    margin-top: 8px !important;
+  }
+  #introduction .profile-frame {
+    width: 92px !important;
+    height: 92px !important;
+    border-radius: 50% !important;
+    background: rgba(0, 255, 255, 0.08) !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+  #introduction .profile-placeholder {
+    font-size: 3.2rem !important;
+    color: var(--accent-color, #00fff7) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    height: 100%;
+  }
+  #introduction .profile-details {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  #introduction .profile-name {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 4px !important;
+  }
+  #introduction .profile-title {
+    font-size: 1.05rem !important;
+    margin-bottom: 6px !important;
+    color: var(--accent-color, #00fff7) !important;
+    opacity: 0.92 !important;
+  }
+  #introduction .profile-bio {
+    font-size: 0.98rem !important;
+    margin-bottom: 10px !important;
+    color: #eafcff !important;
+    opacity: 0.88 !important;
+  }
+  #introduction .profile-stats {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin: 0 auto 8px auto !important;
+  }
+  #introduction .profile-stats .stat {
+    background: rgba(0, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    padding: 8px 10px !important;
+    min-width: 60px !important;
+    box-shadow: 0 1.5px 8px 0 rgba(0, 255, 255, 0.08) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  #introduction .profile-stats .stat-value {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: var(--accent-color, #00fff7) !important;
+  }
+  #introduction .profile-stats .stat-label {
+    font-size: 0.85rem !important;
+    color: #eafcff !important;
+    opacity: 0.7 !important;
+  }
+  #introduction .bio-details {
+    margin: 18px auto 0 auto !important;
+    padding: 12px 2vw 12px 2vw !important;
+    background: rgba(20, 24, 32, 0.92) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.08) !important;
+    width: 98vw !important;
+    max-width: 420px !important;
+    font-size: 0.98rem !important;
+    color: #eafcff !important;
+    opacity: 0.92 !important;
+    line-height: 1.5 !important;
+  }
+  #introduction .bio-details p {
+    margin-bottom: 10px !important;
+    text-align: center !important;
+  }
+
+  /* Blockchain Explorer Section Mobile Optimizations */
+  #blockchain-explorer.section {
+    padding: 16px 0 32px 0 !important;
+    margin: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  #blockchain-explorer .section-description {
+    font-size: 1rem !important;
+    margin-bottom: 10px !important;
+    text-align: center !important;
+    padding: 0 2vw !important;
+  }
+  .explorer-interface {
+    position: relative !important;
+    z-index: 2 !important;
+    background: transparent !important;
+    pointer-events: auto !important;
+    flex-direction: column !important;
+    display: flex !important;
+    gap: 16px !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    overflow-x: visible !important;
+  }
+  .explorer-controls {
+    z-index: 3 !important;
+    background: rgba(20, 24, 32, 0.92) !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.1) !important;
+    margin-bottom: 10px !important;
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 10px 2vw 10px 2vw !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+  }
+  .explorer-controls .control-group,
+  .explorer-controls .control-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin-bottom: 0 !important;
+  }
+  .explorer-controls label {
+    font-size: 0.98rem !important;
+    min-width: 90px !important;
+  }
+  .explorer-controls select,
+  .explorer-controls input[type="range"] {
+    font-size: 1rem !important;
+    min-width: 80px !important;
+    max-width: 120px !important;
+    flex: 1 1 80px !important;
+  }
+  .explorer-controls .range-slider-container {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .explorer-controls .range-value {
+    font-size: 0.95rem !important;
+    min-width: 70px !important;
+    text-align: right !important;
+  }
+  .explorer-controls .explorer-btn {
+    font-size: 1.1rem !important;
+    padding: 8px 10px !important;
+    border-radius: 8px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    margin: 0 2px !important;
+  }
+  .explorer-controls .blockchain-stats {
+    flex-direction: column !important;
+    gap: 4px !important;
+    margin-top: 6px !important;
+    width: 100% !important;
+    font-size: 0.98rem !important;
+  }
+  .explorer-controls .stat-group {
+    flex-direction: row !important;
+    gap: 10px !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  .explorer-controls .explorer-stat {
+    min-width: 90px !important;
+    text-align: left !important;
+    font-size: 0.97rem !important;
+  }
+  .explorer-viewport {
+    min-height: 260px !important;
+    z-index: 2 !important;
+    background: transparent !important;
+    margin-bottom: 12px !important;
+    position: relative !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    overflow-x: auto !important;
+  }
+  #blockchain3DContainer {
+    background: rgba(16, 21, 26, 0.85) !important;
+    z-index: 2 !important;
+    border: 1.5px solid rgba(0, 255, 255, 0.1) !important;
+    margin-bottom: 8px !important;
+    position: relative !important;
+    width: 98vw !important;
+    max-width: 98vw !important;
+    min-width: 0 !important;
+    height: 220px !important;
+    min-height: 120px !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.08) !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  #blockchain3DContainer canvas {
+    z-index: 2 !important;
+    position: relative !important;
+    background: transparent !important;
+    pointer-events: auto !important;
+    width: 98vw !important;
+    max-width: 98vw !important;
+    height: 220px !important;
+    min-height: 120px !important;
+    display: block !important;
+    margin: 0 auto !important;
+    background: transparent !important;
+  }
+  .block-info-panel {
+    z-index: 3 !important;
+    min-height: 120px !important;
+    background: rgba(20, 24, 32, 0.97) !important;
+    margin-bottom: 10px !important;
+    position: relative !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.1) !important;
+    width: 98vw !important;
+    max-width: 98vw !important;
+    min-width: 0 !important;
+    background: rgba(20, 24, 32, 0.96) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.08) !important;
+    padding: 10px 2vw !important;
+    margin: 0 auto 0 auto !important;
+    font-size: 0.98rem !important;
+    display: block !important;
+    overflow-x: auto !important;
+  }
+  .block-info-panel h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 6px !important;
+    text-align: center !important;
+  }
+  .block-info-panel .info-row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin-bottom: 2px !important;
+    font-size: 0.97rem !important;
+  }
+  .block-info-panel .info-label {
+    font-weight: 600 !important;
+    color: var(--accent-color, #00fff7) !important;
+    min-width: 90px !important;
+  }
+  .block-info-panel .info-value {
+    color: #eafcff !important;
+    text-align: right !important;
+    flex: 1 1 auto !important;
+  }
+  /* Ensure background animation is visible */
+  #bgCanvas {
+    z-index: 0 !important;
+    pointer-events: none !important;
+    opacity: 1 !important;
+  }
+  #simple-bg-container {
+    display: block !important;
+    opacity: 1 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Enhanced AI Assistant Mobile Optimizations */
+  #assistant .assistant-interface {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    background: rgba(20, 24, 32, 0.98) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.08) !important;
+    margin: 0 auto 18px auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  #assistant .assistant-sidebar {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 14px 4vw 8px 4vw !important;
+    border-radius: 14px 14px 0 0 !important;
+    background: rgba(24, 28, 36, 0.98) !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  #assistant .assistant-profile {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+  }
+  #assistant .assistant-avatar {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 2rem !important;
+    border-radius: 50% !important;
+    background: #10151a !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 8px !important;
+  }
+  #assistant .assistant-name {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+  }
+  #assistant .assistant-status.online {
+    font-size: 0.95rem !important;
+    color: #0f0 !important;
+    margin-left: 0 !important;
+  }
+  #assistant .assistant-capabilities {
+    display: none !important;
+  }
+  #assistant .voice-controls {
+    display: none !important;
+  }
+  #assistant .assistant-main {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    padding: 0 4vw 12px 4vw !important;
+    background: transparent !important;
+    border-radius: 0 0 14px 14px !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+  #assistant .conversation-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  #assistant .conversation-history {
+    min-height: 120px !important;
+    max-height: 32vh !important;
+    overflow-y: auto !important;
+    font-size: 1.05rem !important;
+    padding: 8px 0 8px 0 !important;
+    background: transparent !important;
+  }
+  #assistant .message {
+    font-size: 1.05rem !important;
+    margin-bottom: 10px !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+  }
+  #assistant .system-message {
+    color: #00fff7 !important;
+    font-weight: 600 !important;
+  }
+  #assistant .user-message {
+    color: #fff !important;
+    text-align: right !important;
+  }
+  #assistant .ai-message {
+    color: #eafcff !important;
+    background: rgba(0, 255, 255, 0.04) !important;
+    border-radius: 8px !important;
+    padding: 6px 10px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  /* Removed #assistant .input-container mobile rules. Use style-ai-fix.css for all input-container mobile styles. */
+  /* #assistant .input-container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  } */
+}
+
+/* === Roadmap & Timeline Mobile iOS Fixes === */
+@media screen and (max-width: 768px) {
+  /* Hide roadmap/timeline vertical lines and connectors for mobile clarity */
+  .roadmap-timeline {
+    border-left: none !important;
+    background: none !important;
+    padding-left: 4px !important;
+  }
+  .phase-connector,
+  .connector-line {
+    display: none !important;
+  }
+  .connector-dot {
+    box-shadow: none !important;
+    background: var(--accent-color) !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+  /* Ensure roadmap phases stack vertically and are easy to tap */
+  .roadmap-phase {
+    margin-bottom: 28px !important;
+    padding-left: 0 !important;
+    position: static !important;
+  }
+  .phase-content,
+  .milestone-card {
+    padding: 18px 12px !important;
+    margin-bottom: 18px !important;
+    line-height: 1.6 !important;
+    word-break: break-word !important;
+    font-size: 1.08em !important;
+    min-height: 56px !important;
+    border-radius: 14px !important;
+  }
+  .phase-content {
+    margin-top: 10px !important;
+  }
+  .milestone-card {
+    gap: 12px !important;
+  }
+  /* Make filter buttons and interactive elements large enough for touch */
+  .timeline-filters .filter-btn {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    font-size: 1.08rem !important;
+    padding: 10px 12px !important;
+    border-radius: 8px !important;
+  }
+}
+
+/* Mobile Loading Overlay Fix */
+@media (max-width: 800px) {
+  #loadingOverlay {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 9999 !important;
+    pointer-events: auto !important;
+    background: var(--bg-color, #101820) !important;
+    transition: opacity 0.8s !important;
+  }
+}
