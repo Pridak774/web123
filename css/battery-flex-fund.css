@@ -1,0 +1,813 @@
+/* Romania Battery Flex Fund Styles - CLEANED */
+.battery-flex-fund {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  --flex-fund-primary: var(--accent-color);
+  --flex-fund-secondary: rgba(var(--accent-color-rgb), 0.8);
+  --flex-fund-tertiary: rgba(var(--accent-color-rgb), 0.6);
+  --flex-fund-quaternary: rgba(var(--accent-color-rgb), 0.4);
+  --flex-fund-background: rgba(var(--accent-color-rgb), 0.15);
+  --flex-fund-card-bg: rgba(var(--accent-color-rgb), 0.1);
+  --flex-fund-border: rgba(var(--accent-color-rgb), 0.2);
+  --flex-fund-hover: rgba(var(--accent-color-rgb), 0.1);
+  padding: 2rem 0;
+  color: #fff;
+  background: rgba(15, 18, 25, 0.55);
+  background-image: linear-gradient(
+    45deg,
+    rgba(0, 40, 80, 0.9),
+    rgba(0, 10, 30, 0.95)
+  );
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 48px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.1),
+    0 0 0 2px rgba(var(--accent-color-rgb, 0, 255, 255), 0.08) inset;
+  animation: flex-fund-border-glow 6s ease-in-out infinite alternate;
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border-radius: 24px;
+  border: 1.5px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.13);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+@keyframes flex-fund-border-glow {
+  0% {
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.08) inset,
+      0 0 32px 0 rgba(0, 255, 255, 0.04);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(0, 255, 255, 0.16) inset,
+      0 0 64px 0 rgba(0, 255, 255, 0.08);
+  }
+}
+
+.battery-flex-fund::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/grid-pattern.svg");
+  background-size: cover;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.battery-flex-fund .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.battery-flex-fund .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--flex-fund-primary),
+    var(--flex-fund-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color, #00fff7),
+    var(--accent-color, #00fff7) 80%,
+    #fff0 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: var(--accent-color, #00fff7);
+  text-shadow: 0 0 8px rgba(var(--accent-color-rgb, 0, 255, 255), 0.25);
+}
+
+.battery-flex-fund .section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.battery-flex-fund .flex-fund-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Panel Common Styles */
+.battery-flex-fund .fund-overview-panel,
+.battery-flex-fund .fund-metrics-panel,
+.battery-flex-fund .fund-strategy-panel {
+  background: var(--flex-fund-card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--flex-fund-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.08),
+    0 1.5px 8px 0 rgba(0, 255, 255, 0.12);
+  border: 1.5px solid rgba(0, 255, 255, 0.18);
+  position: relative;
+  margin-bottom: 1.5rem;
+  background: rgba(20, 25, 40, 0.38);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-radius: 18px;
+  border: 1.5px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+  box-shadow: 0 8px 32px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.1),
+    0 1.5px 8px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.12);
+  position: relative;
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+.battery-flex-fund .fund-overview-panel::before,
+.battery-flex-fund .fund-metrics-panel::before,
+.battery-flex-fund .fund-strategy-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  box-shadow: 0 0 32px 4px rgba(0, 255, 255, 0.08);
+  z-index: 0;
+}
+
+.battery-flex-fund .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--flex-fund-border);
+  border-bottom: 1.5px solid rgba(0, 255, 255, 0.13);
+  box-shadow: 0 2px 8px 0 rgba(0, 255, 255, 0.04);
+  border-bottom: 1.5px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.13);
+  box-shadow: 0 2px 8px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.04);
+}
+
+.battery-flex-fund .panel-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--flex-fund-primary);
+}
+
+/* Project Status */
+.battery-flex-fund .project-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.battery-flex-fund .project-status.active .status-dot {
+  background-color: var(--flex-fund-tertiary);
+  box-shadow: 0 0 8px var(--flex-fund-tertiary);
+}
+
+.battery-flex-fund .status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Project Specs */
+.battery-flex-fund .project-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.battery-flex-fund .specs-primary,
+.battery-flex-fund .specs-detail {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.battery-flex-fund .specs-primary {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.battery-flex-fund .specs-primary .spec-item {
+  flex: 1;
+  min-width: 150px;
+}
+
+.battery-flex-fund .specs-detail {
+  justify-content: space-between;
+}
+
+.battery-flex-fund .specs-detail .spec-item {
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 120px;
+}
+
+.battery-flex-fund .spec-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.battery-flex-fund .spec-item:hover {
+  background-color: var(--flex-fund-hover);
+  transform: translateY(-2px);
+}
+
+.battery-flex-fund .spec-item.highlight {
+  background: linear-gradient(
+    45deg,
+    rgba(0, 255, 255, 0.15),
+    rgba(0, 0, 0, 0.2)
+  );
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.battery-flex-fund .spec-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--flex-fund-primary);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.battery-flex-fund .spec-data {
+  flex: 1;
+}
+
+.battery-flex-fund .spec-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.battery-flex-fund .spec-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* System Diagram */
+.battery-flex-fund .system-diagram {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.battery-flex-fund .diagram-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  width: 120px;
+  z-index: 1;
+}
+
+.battery-flex-fund .diagram-component div {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.battery-flex-fund .connection-line {
+  height: 20px;
+  width: 2px;
+  background-color: var(--flex-fund-primary);
+  margin: 5px 0;
+}
+
+.battery-flex-fund .data-flow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: battery-flow 4s linear infinite alternate;
+}
+
+@keyframes battery-flow {
+  0% {
+    filter: brightness(1.1) drop-shadow(0 0 8px #0ff);
+  }
+  100% {
+    filter: brightness(1.5) drop-shadow(0 0 24px #0ff);
+  }
+}
+
+.battery-flex-fund .data-flow.charging {
+  background: url("/assets/charging-flow.svg") no-repeat center center;
+  background-size: contain;
+}
+
+.battery-flex-fund .data-flow.discharging {
+  background: url("/assets/discharging-flow.svg") no-repeat center center;
+  background-size: contain;
+}
+
+/* Metrics Panel */
+.battery-flex-fund .fund-metrics-panel .panel-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.battery-flex-fund .btn-sm {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color, #00fff7),
+    var(--accent-color, #00fff7) 80%,
+    #fff0 100%
+  );
+  color: #000;
+  border: none;
+  box-shadow: 0 0 12px 2px rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.battery-flex-fund .btn-sm:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.3);
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent-color, #00fff7), #fff0 100%);
+  color: #fff;
+  box-shadow: 0 0 24px 4px rgba(var(--accent-color-rgb, 0, 255, 255), 0.28);
+}
+
+.battery-flex-fund .btn-sm.active {
+  background-color: rgba(0, 255, 255, 0.2);
+  border-color: var(--flex-fund-primary);
+  color: #fff;
+}
+
+.battery-flex-fund .metrics-visualization {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.battery-flex-fund .metric-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  flex: 1;
+  min-width: 250px;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  background: rgba(10, 18, 25, 0.55);
+  backdrop-filter: blur(8px) saturate(1.1);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  border-radius: 12px;
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.1);
+  box-shadow: 0 2px 12px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.08);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+.battery-flex-fund .metric-card:hover {
+  box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.18);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.08),
+    rgba(0, 255, 150, 0.08)
+  );
+  border: 1px solid rgba(0, 255, 255, 0.18);
+  z-index: 2;
+  background: rgba(10, 18, 25, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+  border: 1.5px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+}
+
+.battery-flex-fund .metric-card h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.battery-flex-fund .chart-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 255, 255, 0.04) 0%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.04);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: rgba(20, 25, 40, 0.32);
+  backdrop-filter: blur(6px) saturate(1.1);
+  -webkit-backdrop-filter: blur(6px) saturate(1.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.06);
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.08);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+.battery-flex-fund .chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.battery-flex-fund .chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.93em;
+  font-family: monospace;
+}
+
+.battery-flex-fund .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.battery-flex-fund .legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 6px 1px rgba(0, 255, 255, 0.18);
+  background: var(--accent-color, #00fff7) !important;
+  box-shadow: 0 0 8px 2px rgba(var(--accent-color-rgb, 0, 255, 255), 0.25);
+}
+
+.battery-flex-fund .market-charts-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.battery-flex-fund .chart-tab-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.battery-flex-fund .chart-display {
+  margin-bottom: 1rem;
+}
+
+.battery-flex-fund .chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.battery-flex-fund .chart-header h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.battery-flex-fund .chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.battery-flex-fund .pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--flex-fund-tertiary);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 2s infinite;
+  background: var(--accent-color, #00fff7) !important;
+  box-shadow: 0 0 8px 2px rgba(var(--accent-color-rgb, 0, 255, 255), 0.25);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(150, 255, 0, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(150, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(150, 255, 0, 0);
+  }
+}
+
+/* Strategy Panel */
+.battery-flex-fund .strategy-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.battery-flex-fund .metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.battery-flex-fund .finance-metric {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  background: rgba(10, 18, 25, 0.55);
+  backdrop-filter: blur(8px) saturate(1.1);
+  -webkit-backdrop-filter: blur(8px) saturate(1.1);
+  border-radius: 12px;
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.1);
+  box-shadow: 0 2px 12px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.08);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+.battery-flex-fund .finance-metric:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.18);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.08),
+    rgba(0, 255, 150, 0.08)
+  );
+  border: 1px solid rgba(0, 255, 255, 0.18);
+  z-index: 2;
+  background: rgba(10, 18, 25, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+  border: 1.5px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+}
+
+.battery-flex-fund .metric-value {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  background: linear-gradient(
+    90deg,
+    var(--flex-fund-primary),
+    var(--flex-fund-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color, #00fff7),
+    var(--accent-color, #00fff7) 80%,
+    #fff0 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  color: var(--accent-color, #00fff7);
+  text-shadow: 0 0 8px rgba(var(--accent-color-rgb, 0, 255, 255), 0.25);
+}
+
+.battery-flex-fund .metric-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.battery-flex-fund .pie-chart-container {
+  position: relative;
+  height: 180px;
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 255, 255, 0.04) 0%,
+    rgba(0, 0, 0, 0.08) 100%
+  );
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 255, 255, 0.04);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  background: rgba(20, 25, 40, 0.32);
+  backdrop-filter: blur(6px) saturate(1.1);
+  -webkit-backdrop-filter: blur(6px) saturate(1.1);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(var(--accent-color-rgb, 0, 255, 255), 0.06);
+  border: 1px solid rgba(var(--accent-color-rgb, 0, 255, 255), 0.08);
+  transition: background 0.4s, box-shadow 0.4s, border-color 0.4s;
+}
+
+.battery-flex-fund .investment-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.battery-flex-fund .investment-highlights li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.battery-flex-fund .investment-highlights li i {
+  color: var(--flex-fund-primary);
+  margin-right: 0.5em;
+  font-size: 1.1em;
+  color: var(--accent-color, #00fff7);
+  text-shadow: 0 0 6px rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+}
+
+.battery-flex-fund .btn-primary {
+  background: linear-gradient(
+    90deg,
+    var(--flex-fund-primary),
+    var(--flex-fund-secondary)
+  );
+  border: none;
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  box-shadow: 0 0 12px 2px rgba(0, 255, 255, 0.18);
+  transition: box-shadow 0.2s, background 0.2s;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color, #00fff7),
+    var(--accent-color, #00fff7) 80%,
+    #fff0 100%
+  );
+  color: #000;
+  border: none;
+  box-shadow: 0 0 12px 2px rgba(var(--accent-color-rgb, 0, 255, 255), 0.18);
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.battery-flex-fund .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
+  background: linear-gradient(90deg, var(--accent-color, #00fff7), #fff0 100%);
+  color: #fff;
+  box-shadow: 0 0 24px 4px rgba(var(--accent-color-rgb, 0, 255, 255), 0.28);
+}
+
+.battery-flex-fund .btn-primary:active {
+  box-shadow: 0 0 24px 4px rgba(0, 255, 255, 0.28);
+}
+
+.battery-flex-fund .mt-3 {
+  margin-top: 1.5rem;
+}
+
+.battery-flex-fund .fund-notes {
+  max-width: 1400px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.battery-flex-fund .fund-notes strong {
+  color: var(--flex-fund-primary);
+  font-weight: 700;
+  color: var(--accent-color, #00fff7);
+  font-weight: 700;
+}
+
+/* Extra: ensure all text is readable on dark backgrounds */
+.battery-flex-fund,
+.battery-flex-fund * {
+  color-scheme: dark;
+}
+
+/* Mobile optimization for Battery Flex Fund */
+@media (max-width: 700px) {
+  .battery-flex-fund .flex-fund-dashboard {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  .battery-flex-fund .fund-overview-panel,
+  .battery-flex-fund .fund-metrics-panel,
+  .battery-flex-fund .fund-strategy-panel {
+    min-width: 0;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .battery-flex-fund .section-title {
+    font-size: 1.5rem;
+  }
+  .battery-flex-fund .section-subtitle {
+    font-size: 1rem;
+  }
+  .battery-flex-fund .metric-card {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .battery-flex-fund .chart-container,
+  .battery-flex-fund .pie-chart-container {
+    height: 120px !important;
+    min-height: 100px;
+  }
+  .battery-flex-fund .metrics-visualization {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .battery-flex-fund .investment-highlights li {
+    font-size: 0.95em;
+  }
+  .battery-flex-fund .btn-primary {
+    font-size: 1em;
+    padding: 0.7em 1.2em;
+  }
+  .battery-flex-fund .market-charts-container {
+    padding: 0.5rem;
+  }
+  .battery-flex-fund .chart-header h4 {
+    font-size: 0.95rem;
+  }
+  .battery-flex-fund .fund-notes {
+    font-size: 0.9em;
+    padding: 0 0.5rem;
+  }
+  .battery-flex-fund .system-diagram {
+    padding: 1rem 0.5rem;
+  }
+  .battery-flex-fund .diagram-component {
+    width: 90px;
+    font-size: 0.9em;
+  }
+  .battery-flex-fund .spec-item {
+    font-size: 0.95em;
+    padding: 0.5rem;
+  }
+  .battery-flex-fund .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .battery-flex-fund .chart-tab-container {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .battery-flex-fund .chart-display {
+    margin-bottom: 0.5rem;
+  }
+}

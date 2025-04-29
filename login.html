@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Login - SEVER Network</title>
+    <!-- main and login CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="login-styles.css" />
+    <link rel="stylesheet" href="position-fix.css" />
+    <link rel="stylesheet" href="layout-fix.css" />
+    <link rel="stylesheet" href="style-ai-fix.css" />
+    <!-- Add any additional styles or scripts here -->
+    <!-- background animator & theme logic -->
+    <script src="bg-animations/bg-theme-animator.js" defer></script>
+    <script src="script-2.js" defer></script>
+    <!-- Main animation script -->
+    <script src="login-network.js"></script>
+    <script src="login-animations.js"></script>
+  </head>
+  <body class="wallet-theme">
+    <script>
+      // Reapply saved theme after body is available
+      (function () {
+        const savedColor =
+          localStorage.getItem("accentColor") || localStorage.getItem("theme");
+        if (savedColor) document.body.classList.add(`theme-${savedColor}`);
+        if (localStorage.getItem("theme") === "light")
+          document.body.classList.add("light-mode");
+      })();
+    </script>
+    <!-- particle canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="login-page">
+      <div class="tech-background"></div>
+      <div class="login-container">
+        <!-- Add corner elements for cybertruck angular design -->
+        <div class="corner-top-left"></div>
+        <div class="corner-top-right"></div>
+        <div class="corner-bottom-left"></div>
+        <div class="corner-bottom-right"></div>
+
+        <div class="login-status">SYS::READY</div>
+        <h1 class="glitch-title" data-text="Connect to SEVER">
+          Connect to SEVER
+        </h1>
+        <div class="error-message" id="errorMessage"></div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+          <button type="submit" class="connect-button">Log In</button>
+          <div style="margin-top: 10px; text-align: center">
+            <a href="#" id="showSignUp">Create an account</a>
+          </div>
+        </form>
+        <form id="signUpForm" style="display: none">
+          <div class="form-group">
+            <label for="signup-username">Username</label>
+            <input
+              type="text"
+              id="signup-username"
+              name="signup-username"
+              placeholder="Choose a username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input
+              type="password"
+              id="signup-password"
+              name="signup-password"
+              placeholder="Choose a password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="signup-invitation">Invitation Code (optional)</label>
+            <input
+              type="text"
+              id="signup-invitation"
+              name="signup-invitation"
+              placeholder="Enter invitation code for tokens"
+            />
+          </div>
+          <button type="submit" class="connect-button">Create Account</button>
+          <div style="margin-top: 10px; text-align: center">
+            <a href="#" id="showLogin">Already have an account? Log in</a>
+          </div>
+        </form>
+        <form id="invitationForm" style="display: none">
+          <div class="form-group">
+            <label for="invitationCode">Invitation Code</label>
+            <input
+              type="text"
+              id="invitationCode"
+              name="invitationCode"
+              placeholder="Enter your invitation code (optional)"
+            />
+          </div>
+          <button type="submit" class="connect-button" id="continueBtn">
+            Continue
+          </button>
+        </form>
+        <p>Don't have an account? <a href="#">Request Access</a></p>
+      </div>
+    </div>
+
+    <script>
+      // Form validation and UI interaction
+      const API_BASE = "https://website-sever-netwrok.onrender.com/";
+      const invitationForm = document.getElementById("invitationForm");
+      const loginForm = document.getElementById("loginForm");
+      const signUpForm = document.getElementById("signUpForm");
+      const errorMessage = document.getElementById("errorMessage");
+      let invitationCode = "";
+      invitationForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        invitationCode = document.getElementById("invitationCode").value.trim();
+        // Optionally, validate invitation code with backend
+        if (invitationCode) {
+          try {
+            const res = await fetch(API_BASE + "claim", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ code: invitationCode }),
+            });
+            const data = await res.json();
+            if (!res.ok)
+              throw new Error(data.error || "Invalid invitation code");
+            // Invitation code valid, show create account form
+            errorMessage.textContent =
+              "Invitation code accepted. Please create your account.";
+            errorMessage.classList.add("visible");
+            invitationForm.style.display = "none";
+            loginForm.style.display = "block";
+          } catch (err) {
+            errorMessage.textContent = err.message;
+            errorMessage.classList.add("visible");
+            return;
+          }
+        } else {
+          // No invitation code, allow open registration
+          invitationForm.style.display = "none";
+          loginForm.style.display = "block";
+        }
+      });
+      loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        // Use invitationCode from previous step
+        if (username && password) {
+          try {
+            const res = await fetch(API_BASE + "register", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                username,
+                password,
+                code: invitationCode,
+              }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.error || "Registration failed");
+            sessionStorage.setItem("walletUser", JSON.stringify(data));
+            window.location.href = "blockchain-s/wallet.html";
+          } catch (err) {
+            errorMessage.textContent = err.message;
+            errorMessage.classList.add("visible");
+            document.querySelector(".login-container").classList.add("shake");
+            setTimeout(() => {
+              document
+                .querySelector(".login-container")
+                .classList.remove("shake");
+            }, 500);
+          }
+        } else {
+          errorMessage.textContent = "Please enter both username and password";
+          errorMessage.classList.add("visible");
+          document.querySelector(".login-container").classList.add("shake");
+          setTimeout(() => {
+            document
+              .querySelector(".login-container")
+              .classList.remove("shake");
+          }, 500);
+        }
+      });
+      document.getElementById("showSignUp").onclick = function (e) {
+        e.preventDefault();
+        loginForm.style.display = "none";
+        signUpForm.style.display = "block";
+        errorMessage.textContent = "";
+      };
+      document.getElementById("showLogin").onclick = function (e) {
+        e.preventDefault();
+        signUpForm.style.display = "none";
+        loginForm.style.display = "block";
+        errorMessage.textContent = "";
+      };
+      loginForm.onsubmit = async function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        if (!username || !password) {
+          errorMessage.textContent = "Username and password required.";
+          errorMessage.classList.add("visible");
+          return;
+        }
+        try {
+          const res = await fetch(API_BASE + "login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Login failed");
+          sessionStorage.setItem("walletUser", JSON.stringify(data));
+          window.location.href = "blockchain-s/wallet.html";
+        } catch (err) {
+          errorMessage.textContent = err.message;
+          errorMessage.classList.add("visible");
+        }
+      };
+      signUpForm.onsubmit = async function (e) {
+        e.preventDefault();
+        const username = document
+          .getElementById("signup-username")
+          .value.trim();
+        const password = document
+          .getElementById("signup-password")
+          .value.trim();
+        const code = document.getElementById("signup-invitation").value.trim();
+        if (!username || !password) {
+          errorMessage.textContent = "Please enter username and password";
+          errorMessage.classList.add("visible");
+          return;
+        }
+        try {
+          const res = await fetch(API_BASE + "register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password, code }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Registration failed");
+          sessionStorage.setItem("walletUser", JSON.stringify(data));
+          window.location.href = "blockchain-s/wallet.html";
+        } catch (err) {
+          errorMessage.textContent = err.message;
+          errorMessage.classList.add("visible");
+        }
+      };
+    </script>
+  </body>
+</html>

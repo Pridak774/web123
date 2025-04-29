@@ -1,0 +1,313 @@
+/* Global Layout and Alignment Fixes */
+
+/* Fix padding and section spacing */
+section {
+  padding: 50px 0;
+  margin-bottom: 40px;
+  clear: both;
+}
+
+/* Better terminal headers alignment */
+.terminal-heading {
+  text-align: left;
+  width: 100%;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.terminal-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+/* Section description styling */
+.section-description {
+  text-align: left;
+  margin-bottom: 30px;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Fix blockchain animation positioning */
+.blockchain-animation {
+  width: 100%;
+  height: 250px;
+  margin: 40px 0;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+}
+
+body.light-mode .blockchain-animation {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Blockchain Explorer Section Styling */
+#blockchain-explorer {
+  position: relative;
+}
+
+/* Align explorer interface elements */
+.explorer-interface {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+.explorer-controls {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  height: fit-content;
+  align-self: start;
+}
+
+body.light-mode .explorer-controls {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.explorer-viewport {
+  height: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#blockchain3DContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Better panel alignment */
+.dashboard-panel,
+.market-view,
+.trading-panel,
+.calculator-panel,
+.results-panel {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  margin: 0;
+}
+
+body.light-mode .dashboard-panel,
+body.light-mode .market-view,
+body.light-mode .trading-panel,
+body.light-mode .calculator-panel,
+body.light-mode .results-panel {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.panel-title {
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 1.25rem;
+  color: var(--accent-color);
+}
+
+/* Fix consistent chart container heights */
+.chart-container {
+  height: 250px;
+  margin-bottom: 20px;
+}
+
+/* Consistent card styling */
+.solution-card,
+.contact-card,
+.timeline-node .node-content {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+body.light-mode .solution-card,
+body.light-mode .contact-card,
+body.light-mode .timeline-node .node-content {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.solution-card:hover,
+.contact-card:hover,
+.timeline-node:hover .node-content {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+/* Timeline improvements */
+.timeline-container {
+  padding: 50px 20px;
+  position: relative;
+}
+
+.timeline-track {
+  position: relative;
+  height: 100%;
+  margin-bottom: 30px;
+}
+
+.timeline-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(var(--accent-color-rgb), 0.3);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+}
+
+.timeline-node {
+  margin: 60px 0;
+  position: relative;
+}
+
+/* Profile section alignment */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.profile-image {
+  flex-shrink: 0;
+}
+
+.profile-name {
+  margin-top: 0;
+}
+
+/* Stats banner alignment */
+.energy-stats-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+}
+
+body.light-mode .energy-stats-banner {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Fix form group alignment */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Fix energy source cards alignment */
+.energy-sources {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.energy-source {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+body.light-mode .energy-source {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Fix dashboard container spacing */
+.dashboard-container,
+.simulator-container,
+.calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Fix position of dashboard panel elements */
+.real-time-stats {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+/* Fix positioning of blockchain visualization */
+.blockchain-visualization {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+body.light-mode .blockchain-visualization {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Contact section improvements */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.contact-card {
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+/* Fix footer spacing and alignment */
+#siteFooter {
+  margin-top: 100px;
+  padding-top: 40px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-bottom {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 30px auto 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fix anchor scroll offset so section titles are not hidden under the sticky navbar */
+.container > *[id] {
+  scroll-margin-top: 70px;
+  scroll-margin-block-start: 70px;
+}
+
+/* All mobile optimizations, media queries, and size/layout overrides for mobile have been removed for a fresh start. Only desktop/general layout fixes remain. */

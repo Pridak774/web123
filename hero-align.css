@@ -1,0 +1,110 @@
+/**
+ * Hero Section Alignment Fixes
+ * Improves positioning and responsiveness of the hero section
+ */
+
+/* Hero section container alignment */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Adjust for navbar height */
+  width: 100%;
+  padding: 80px 20px;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+/* Fix hero content container to be properly centered */
+.hero-content {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Center the glitch container elements */
+.glitch-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center title line */
+.title-line {
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+/* Fix theme toggle positioning and animation */
+.hero-theme-toggle {
+  position: relative;
+  z-index: 5;
+  opacity: 1 !important;
+  animation: none !important;
+  box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+.hero-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Make hero buttons more interactive */
+.hero-btn {
+  backdrop-filter: blur(5px);
+}
+
+.hero-btn:active {
+  transform: translateY(1px);
+}
+
+/* Improve the scroll indicator visibility */
+.scroll-indicator {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  opacity: 0.8;
+  z-index: 5;
+}
+
+.scroll-indicator i {
+  font-size: 1.5rem;
+}
+
+/* Hero stats better wrapping and spacing */
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.hero-stats .blockchain-stat {
+  min-width: 180px;
+  margin-bottom: 10px;
+  flex: 1 1 auto;
+}
+
+/*
+ * All mobile-specific rules have been moved to mobile-fixes.css.
+ * This file now contains only desktop/general styles.
+ */
+
+/* REMOVE ALL THEME BUTTON/THEME SELECTOR/THEME-BTN MOBILE RULES FROM THIS FILE. Use only in mobile-fixes.css. */
+
+/* All .theme-btn, .theme-buttons, .theme-selector, and #hero .theme-btn rules have been removed or commented out. Use mobile-fixes.css for mobile overrides. */

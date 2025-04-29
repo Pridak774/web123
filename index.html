@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sever Silaghi - Investment &amp; Business Innovations</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="position-fix.css" />
+    <link rel="stylesheet" href="layout-fix.css" />
+    <link rel="stylesheet" href="style-ai-fix.css" />
+    <link rel="stylesheet" href="login-styles.css" />
+    <link rel="stylesheet" href="nav-fix.css" />
+    <link rel="stylesheet" href="hero-content.css" />
+    <link rel="stylesheet" href="hero-align.css" />
+    <link rel="stylesheet" href="blockchain-explorer.css" />
+    <link rel="stylesheet" href="safari-fixes.css" />
+    <link rel="stylesheet" href="mobile-fixes.css" />
+    <link rel="stylesheet" href="css/blockchain-styles.css" />
+    <link rel="stylesheet" href="css/battery-flex-fund.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Icon & Visualization Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Background Animations -->
+    <script src="bg-animations/gold-animation.js" defer></script>
+    <script src="bg-animations/white-animation.js" defer></script>
+    <script src="simple-bg-animation.js" defer></script>
+    <script src="basic-background.js" defer></script>
+    <script src="bg-animations/bg-theme-animator.js" defer></script>
+    <script src="bg-animations/bg-theme-manager.js" defer></script>
+
+    <!-- Blockchain Explorer & Main Scripts -->
+    <script src="blockchainExplorer.js" defer></script>
+    <script src="script-2.js" defer></script>
+    <script src="layout-helper.js" defer></script>
+    <script src="position-fix.js" defer></script>
+    <script src="hero-script.js" defer></script>
+    <script src="trading-blockchain.js" defer></script>
+    <script src="touch-interaction.js" defer></script>
+    <script src="cross-browser-fixes.js" defer></script>
+    <script src="js/trading-simulator.js" defer></script>
+    <script src="js/blockchain-visualizer.js" defer></script>
+    <script src="js/counter-animation.js" defer></script>
+    <script src="js/snapshot-animation.js" defer></script>
+    <script src="js/battery-flex-fund.js" defer></script>
+
+    <style>
+      /* Ensure bgCanvas is visible across all browsers */
+      #bgCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Custom Cursor Element (desktop only) -->
+    <div id="customCursor"></div>
+
+    <!-- Sticky Navigation Bar -->
+    <nav id="navbar">
+      <div class="nav-container center-aligned">
+        <div class="hamburger-menu" id="hamburgerMenu">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#introduction">About</a></li>
+          <li><a href="#energy-dashboard">Dashboard</a></li>
+          <li><a href="#trading-simulator">Trading</a></li>
+          <li><a href="#timeline-visualization">Projects</a></li>
+          <li><a href="#blockchain-explorer">Explorer</a></li>
+          <li><a href="#energy-calculator">Calculator</a></li>
+          <li><a href="#assistant">AI Assistant</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <button id="themeToggle"><i class="fas fa-adjust"></i></button>
+          </li>
+          <li>
+            <a href="blockchain-s/login.html" class="navbar-connect">Connect</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Blockchain-focused Loading Animation -->
+    <div id="loadingOverlay">
+      <div class="loading-container">
+        <div class="blockchain-loading-visual">
+          <svg viewBox="0 0 240 100" width="240" height="100">
+            <!-- Blockchain chain visualization with energy elements -->
+            <g class="blockchain-chain">
+              <!-- Block 1 with energy icon -->
+              <rect
+                class="loading-block"
+                x="10"
+                y="35"
+                width="40"
+                height="30"
+                rx="3"
+                ry="3"
+              ></rect>
+              <text class="block-text" x="20" y="55" font-size="8">ENERGY</text>
+              <!-- Connection line -->
+              <line class="chain-link" x1="50" y1="50" x2="70" y2="50" />
+
+              <!-- Block 2 with solar icon -->
+              <rect
+                class="loading-block"
+                x="70"
+                y="35"
+                width="40"
+                height="30"
+                rx="3"
+                ry="3"
+              ></rect>
+              <text class="block-text" x="80" y="55" font-size="8">SOLAR</text>
+              <!-- Connection line -->
+              <line class="chain-link" x1="110" y1="50" x2="130" y2="50" />
+
+              <!-- Block 3 with wind icon -->
+              <rect
+                class="loading-block"
+                x="130"
+                y="35"
+                width="40"
+                height="30"
+                rx="3"
+                ry="3"
+              ></rect>
+              <text class="block-text" x="140" y="55" font-size="8">WIND</text>
+              <!-- Connection line -->
+              <line class="chain-link" x1="170" y1="50" x2="190" y2="50" />
+
+              <!-- Block 4 with hydro icon -->
+              <rect
+                class="loading-block"
+                x="190"
+                y="35"
+                width="40"
+                height="30"
+                rx="3"
+                ry="3"
+              ></rect>
+              <text class="block-text" x="200" y="55" font-size="8">HYDRO</text>
+            </g>
+            <!-- Energy data flow effect -->
+            <g class="binary-flow">
+              <text class="binary-text" x="30" y="20" font-size="6">
+                SOLAR_01_01
+              </text>
+              <text class="binary-text" x="90" y="20" font-size="6">
+                WIND_101001
+              </text>
+              <text class="binary-text" x="150" y="20" font-size="6">
+                HYDRO_01_01
+              </text>
+              <text class="binary-text" x="50" y="80" font-size="6">
+                ENERGY_1Y_1
+              </text>
+              <text class="binary-text" x="110" y="80" font-size="6">
+                TOKEN_01_01
+              </text>
+              <text class="binary-text" x="170" y="80" font-size="6">
+                TRADE_10_10
+              </text>
+            </g>
+          </svg>
+        </div>
+        <div class="loading-progress-container">
+          <div class="loading-progress-bar"></div>
+        </div>
+        <div class="loading-status" id="loadingStatus">
+          Initializing Energy Blockchain
+        </div>
+        <div class="blockchain-stats">
+          <div class="blockchain-stat">
+            <i class="fas fa-bolt"></i> Energy Blocks:
+            <span class="stat-counter">3,487,621</span>
+          </div>
+          <div class="blockchain-stat">
+            <i class="fas fa-solar-panel"></i> Energy Nodes:
+            <span class="stat-counter">247</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+      <!-- Hero Section -->
+      <section id="hero" class="hero-section visible">
+        <div class="hero-content">
+          <div class="hero-header">
+            <div class="glitch-container">
+              <div class="title-line">
+                <div class="tech-logo-container">
+               <!-- Sever Silaghi / SEVER NETWORK Main Logo SVG -->
+<svg class="tech-logo" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--accent-color)" />
+      <stop offset="100%" stop-color="var(--accent-color)" />
+    </linearGradient>
+  </defs>
+  <!-- Tech circuit board pattern -->
+  <path class="circuit-path" d="M20,60 H60 M80,60 H120 M140,60 H180 M200,60 H240 M320,60 H360 M380,60 H420 M440,60 H480 M500,60 H540" stroke="var(--accent-color)" stroke-width="2" />
+  <path class="circuit-path" d="M60,60 V30 M120,60 V90 M180,60 V30 M240,60 V90 M320,60 V30 M360,60 V90 M420,60 V30 M480,60 V90" stroke="var(--accent-color)" stroke-width="2" />
+  <!-- Main text -->
+  <text x="50%" y="55%" class="logo-text main-text" text-anchor="middle" dominant-baseline="middle" fill="url(#logoGradient)">SEVER NETWORK</text>
+  <!-- Subtitle (optional, can be removed if not needed) -->
+  <text x="50%" y="80%" class="logo-text sub-text" text-anchor="middle" dominant-baseline="middle" fill="var(--accent-color)"></text>
+  <!-- Tech nodes -->
+  <circle cx="60" cy="30" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="120" cy="90" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="180" cy="30" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="240" cy="90" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="320" cy="30" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="360" cy="90" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="420" cy="30" r="5" class="tech-node" fill="var(--accent-color)" />
+  <circle cx="480" cy="90" r="5" class="tech-node" fill="var(--accent-color)" />
+</svg>
+                </div>
+              </div>
+              <div class="subtitle-wrapper">
+                <div class="typing-container">
+                  <span class="typing-text"
+                    >Decentralized Energy Trading Platform</span
+                  >
+                  <span class="cursor">_</span>
+                </div>
+              </div>
+              <p class="section-description">
+                <span
+                  class="typing-text"
+                  style="
+                    animation: 3.5s steps(40) 1s 1 normal forwards running
+                      typing;
+                  "
+                  >Decentralized Energy Trading Platform</span
+                >
+                <br />
+                
+                <!-- move theme-selector here -->
+                <div class="theme-selector">
+                  <div class="theme-selector-label">
+                    Theme Selector
+                    <div class="theme-toggles">
+                      <button id="heroThemeToggle" class="hero-theme-toggle" title="Toggle dark/light">
+                        <i class="fas fa-adjust"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="theme-buttons">
+                    <button class="theme-btn neon-theme" data-theme="theme-neon" title="Neon Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn purple-theme" data-theme="theme-purple" title="Purple Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn blue-theme" data-theme="theme-blue" title="Blue Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn red-theme" data-theme="theme-red" title="Red Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn cyan-theme" data-theme="theme-cyan" title="Default Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn gold-theme" data-theme="theme-gold" title="Gold Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button class="theme-btn white-theme" data-theme="theme-white" title="White Tech Theme">
+                      <i class="fas fa-microchip theme-icon"></i>
+                    </button>
+                    <button id="autoColorBtn" class="theme-btn auto-color" title="Auto Cycle Colors">
+                      <i class="fas fa-random"></i>
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Optional: Add a line break for better spacing -->
+                <a href="blockchain-s/login.html" class="connect-button hero-connect"
+                  >CoNeNcT</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="hero-description">
+            <p>
+              Explore the next generation of energy trading powered by
+              blockchain technology. Our platform enables secure, transparent,
+              and efficient transactions in the renewable energy market,
+              connecting producers and consumers in a decentralized ecosystem.
+            </p>
+          </div>
+          <div class="hero-stats">
+            <div class="blockchain-stat">
+              <i class="fas fa-bolt"></i> Energy Blocks:
+              <span class="stat-counter" data-count="3487621">3,487,621</span>
+            </div>
+            <div class="blockchain-stat">
+              <i class="fas fa-solar-panel"></i> Energy Nodes:
+              <span class="stat-counter" data-count="247">247</span>
+            </div>
+            <div class="blockchain-stat">
+              <i class="fas fa-exchange-alt"></i> Daily Transactions:
+              <span class="stat-counter" data-count="2458">2,458</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="#blockchain-explorer" class="hero-btn primary-btn">
+              <i class="fas fa-cube"></i> Explore Blockchain
+            </a>
+            <a href="#trading-simulator" class="hero-btn secondary-btn">
+              <i class="fas fa-exchange-alt"></i> Energy Trading
+            </a>
+          </div>
+          <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down pulse"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- About / Bio Section -->
+      <section id="introduction" class="visible">
+        <h2 class="terminal-heading">&gt; About Sever Silaghi</h2>
+        <div class="profile-container">
+          <div class="profile-image">
+            <div class="profile-frame">
+              <div class="profile-placeholder">
+                <i class="fas fa-user-circle"></i>
+              </div>
+            </div>
+          </div>
+          <div class="profile-details">
+            <h3 class="profile-name">
+              Sever Silaghi
+              <button id="profileThemeToggle">
+                <i class="fas fa-adjust"></i>
+              </button>
+            </h3>
+            <p class="profile-title">
+              Energy System Innovator &amp; Blockchain Specialist
+            </p>
+            <p class="profile-bio">
+              Expert in energy systems, blockchain technology, and innovative
+              business solutions with extensive experience in developing
+              sustainable energy markets and digital transformation strategies.
+            </p>
+            <div class="profile-stats">
+              <div class="stat">
+                <span class="stat-value">15+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">10+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Energy Platforms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bio-details">
+          <p>
+            Sever Silaghi is an innovative entrepreneur and blockchain
+            specialist focused on creating sustainable energy solutions. His
+            expertise spans energy markets, distributed systems, and blockchain
+            integration for modern energy trading platforms.
+          </p>
+          <p>
+            He has developed several groundbreaking projects in renewable
+            energy, creating systems for decentralized energy trading and smart
+            grid optimization. His solutions leverage cutting-edge blockchain
+            technology to transform how energy is bought, sold, and distributed.
+          </p>
+          <p>
+            Through the SEVER Network, he's building an ecosystem that connects
+            energy producers and consumers in a transparent, efficient
+            marketplace powered by blockchain technology. This platform enables
+            secure peer-to-peer energy trading while promoting sustainable
+            energy sources.
+          </p>
+        </div>
+      </section>
+
+      <!-- Blockchain Explorer Section -->
+      <section id="blockchain-explorer" class="section visible">
+        <h2 class="terminal-heading">&gt; Blockchain Explorer</h2>
+        <p class="section-description">
+          Interactive 3D visualization of the SEVER Network blockchain structure
+          and energy transactions.
+        </p>
+        <div class="explorer-interface">
+          <div class="explorer-controls">
+            <div class="control-group">
+              <label for="visualizationMode">Visualization Mode</label>
+              <select id="visualizationMode">
+                <option value="blocks">Blocks &amp; Transactions</option>
+                <option value="network">Network Topology</option>
+                <option value="energy">Energy Flow</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="timeRangeSlider">Time Range</label>
+              <div class="range-slider-container">
+                <input
+                  type="range"
+                  min="1"
+                  max="100"
+                  value="50"
+                  class="range-slider"
+                  id="timeRangeSlider"
+                />
+                <div class="range-value" id="timeRangeValue">
+                  Last 78 Blocks
+                </div>
+              </div>
+            </div>
+            <div class="control-actions">
+              <button class="explorer-btn" id="zoomIn">
+                <i class="fas fa-search-plus"></i> Zoom In
+              </button>
+              <button class="explorer-btn" id="zoomOut">
+                <i class="fas fa-search-minus"></i> Zoom Out
+              </button>
+              <button class="explorer-btn" id="resetView">
+                <i class="fas fa-sync"></i> Reset View
+              </button>
+            </div>
+            <div class="blockchain-stats">
+              <div class="stat-group">
+                <div class="explorer-stat">
+                  <span class="stat-label">Current Block</span>
+                  <span class="stat-value" id="currentBlockNumber"
+                    >3,487,621</span
+                  >
+                </div>
+                <div class="explorer-stat">
+                  <span class="stat-label">Network Hashrate</span>
+                  <span class="stat-value" id="networkHashrate">24.7 TH/s</span>
+                </div>
+              </div>
+              <div class="stat-group">
+                <div class="explorer-stat">
+                  <span class="stat-label">Active Validators</span>
+                  <span class="stat-value" id="activeValidators">156</span>
+                </div>
+                <div class="explorer-stat">
+                  <span class="stat-label">Transaction Pool</span>
+                  <span class="stat-value" id="transactionPool">247</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="explorer-viewport">
+            <div id="blockchain3DContainer">
+              <canvas
+                width="1636"
+                height="1200"
+                style="display: block; width: 818px; height: 600px"
+              ></canvas>
+            </div>
+            <div
+              id="blockInfoPanel"
+              class="block-info-panel"
+              style="display: block"
+            >
+              <h3>Block #3487613</h3>
+              <div class="info-row">
+                <span class="info-label">Hash:</span>
+                <span class="info-value">0x9b71bebd7449d147fd3a17...</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Timestamp:</span>
+                <span class="info-value">12/04/2025, 13:34:29 UTC</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Size:</span>
+                <span class="info-value">1.48 MB</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Transactions:</span>
+                <span class="info-value">12</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Energy Volume:</span>
+                <span class="info-value">262 kWh</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enhanced AI Assistant Section -->
+      <section id="assistant" class="visible">
+        <h2 class="terminal-heading">&gt; AI Energy Assistant</h2>
+        <p class="section-description">
+          Get expert advice on energy systems and blockchain technology with our
+          advanced AI assistant.
+        </p>
+        <div class="assistant-interface">
+          <div class="assistant-sidebar">
+            <div class="assistant-profile">
+              <div class="assistant-avatar">
+                <i class="fas fa-robot"></i>
+              </div>
+              <div class="assistant-name">SEVER AI</div>
+              <div class="assistant-status online">Online</div>
+            </div>
+            <div class="assistant-capabilities">
+              <h3>Capabilities</h3>
+              <ul class="capabilities-list">
+                <li>
+                  <i class="fas fa-chart-line"></i> Energy Market Analysis
+                </li>
+                <li>
+                  <i class="fas fa-solar-panel"></i> Renewable Tech Insights
+                </li>
+                <li><i class="fas fa-calculator"></i> Energy Calculations</li>
+                <li><i class="fas fa-code-branch"></i> Blockchain Knowledge</li>
+                <li>
+                  <i class="fas fa-project-diagram"></i> System Integration
+                </li>
+              </ul>
+            </div>
+            <div class="voice-controls">
+              <h3>Voice Interface</h3>
+              <button id="startVoice" class="voice-btn">
+                <i class="fas fa-microphone"></i> Start Voice Input
+              </button>
+              <div class="voice-settings">
+                <div class="setting">
+                  <label for="voiceSpeed">Response Speed</label>
+                  <select id="voiceSpeed">
+                    <option value="0.8">Slow</option>
+                    <option value="1" selected>Normal</option>
+                    <option value="1.2">Fast</option>
+                  </select>
+                </div>
+                <div class="setting">
+                  <label for="voiceAccent">Voice Accent</label>
+                  <select id="voiceAccent">
+                    <option value="en-US">English (US)</option>
+                    <option value="en-GB">English (UK)</option>
+                    <option value="de-DE">German</option>
+                    <option value="fr-FR">French</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="assistant-main">
+            <div class="conversation-container">
+              <div class="conversation-history" id="conversationHistory">
+                <div class="message system-message">
+                  <div class="message-content">
+                    Welcome to the SEVER AI Assistant. How can I help you with
+                    energy systems or blockchain technology today?
+                  </div>
+                  <div class="message-time">16:09:29</div>
+                </div>
+              </div>
+              <div class="input-container">
+                <div class="mobile-helper-text">Ask anything about energy or blockchain…</div>
+                <div class="suggested-queries">
+                  <button class="query-suggestion" data-query="How does the SEVER Network function?">How does the SEVER Network function?</button>
+                  <button class="query-suggestion" data-query="What is the ROI on solar panels?">What is the ROI on solar panels?</button>
+                  <button class="query-suggestion" data-query="Explain energy tokenization">Explain energy tokenization</button>
+                </div>
+                <div class="input-field">
+                  <input type="text" id="assistantInput" placeholder="Type your question or use voice input...">
+                  <button id="sendQuery"><i class="fas fa-paper-plane"></i></button>
+                  <button id="voiceInputToggle"><i class="fas fa-microphone"></i></button>
+                </div>
+                <div class="voice-status">
+                  <div class="status-indicator" id="voiceIndicator"></div>
+                  <div class="status-text" id="voiceStatus">Voice input ready</div>
+                </div>
+              </div>
+              <div class="assistant-response-panel">
+                <div class="response-header">
+                  <h3>AI Analysis</h3>
+                  <div class="response-actions">
+                    <button class="action-btn" title="Copy to clipboard">
+                      <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="action-btn" title="Download as PDF">
+                      <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <button class="action-btn" title="Share">
+                      <i class="fas fa-share-alt"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="response-content" id="aiResponseContent">
+                  <div class="placeholder-text">
+                    Ask a question to get AI insights...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Replace the existing Romania Battery Flex Fund Section with this enhanced version -->
+      <section id="battery-flex-fund" class="battery-flex-fund">
+        <div class="section-header">
+          <h2 class="section-title">Romania Battery Flex Fund</h2>
+          <p class="section-subtitle">Investment opportunity in energy storage infrastructure</p>
+        </div>
+
+        <div class="flex-fund-dashboard">
+          <!-- Fund Overview Panel -->
+          <div class="fund-overview-panel">
+            <div class="panel-header">
+              <h3>Fund Overview</h3>
+              <div class="project-status active">
+                <span class="status-dot"></span>
+                <span>Active Project</span>
+              </div>
+            </div>
+            
+            <div class="project-specs">
+              <div class="specs-primary">
+                <div class="spec-item highlight">
+                  <div class="spec-icon"><i class="fas fa-bolt"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">125 MW</div>
+                    <div class="spec-label">Total Capacity</div>
+                  </div>
+                </div>
+                
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fas fa-euro-sign"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">€72.5M</div>
+                    <div class="spec-label">Investment Size</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="specs-detail">
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fas fa-chart-line"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">18.4%</div>
+                    <div class="spec-label">Target IRR</div>
+                  </div>
+                </div>
+                
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fas fa-calendar"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">2025-2040</div>
+                    <div class="spec-label">Project Lifespan</div>
+                  </div>
+                </div>
+                
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fas fa-map-marker-alt"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">Bucharest, Romania</div>
+                    <div class="spec-label">Primary Location</div>
+                  </div>
+                </div>
+                
+                <div class="spec-item">
+                  <div class="spec-icon"><i class="fas fa-clock"></i></div>
+                  <div class="spec-data">
+                    <div class="spec-value">4 hours</div>
+                    <div class="spec-label">Storage Duration</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="system-diagram">
+              <div class="diagram-component grid">
+                <i class="fas fa-broadcast-tower fa-2x" style="color: #0ff;"></i>
+                <div>Power Grid</div>
+              </div>
+              <div class="connection-line vertical"></div>
+              <div class="diagram-component transformer">
+                <i class="fas fa-exchange-alt fa-2x" style="color: #0ff;"></i>
+                <div>Transformer</div>
+              </div>
+              <div class="connection-line vertical"></div>
+              <div class="data-flow charging"></div>
+              <div class="data-flow discharging"></div>
+              <div class="diagram-component inverter">
+                <i class="fas fa-random fa-2x" style="color: #0ff;"></i>
+                <div>Inverter</div>
+              </div>
+              <div class="connection-line vertical"></div>
+              <div class="diagram-component battery">
+                <i class="fas fa-battery-full fa-2x" style="color: #0ff;"></i>
+                <div>Battery Storage</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fund Metrics Panel -->
+          <div class="fund-metrics-panel">
+            <div class="panel-header">
+              <h3>Performance & Market Data</h3>
+              <div class="panel-controls">
+                <button class="btn-sm">Day</button>
+                <button class="btn-sm active">Week</button>
+                <button class="btn-sm">Month</button>
+              </div>
+            </div>
+            
+            <div class="metrics-visualization">
+              <div class="metric-card">
+                <h4>Revenue Streams</h4>
+                <div class="chart-container" id="revenueChart">
+                  <!-- Chart will be rendered by JS -->
+                  <canvas id="revenueChartCanvas" height="180"></canvas>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,255,0.8);"></span>
+                    <span>Frequency Regulation</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,150,0.8);"></span>
+                    <span>Energy Arbitrage</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(150,255,0,0.8);"></span>
+                    <span>Capacity Payments</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="metric-card">
+                <h4>Grid Frequency Response</h4>
+                <div class="chart-container" id="frequencyChart">
+                  <!-- Chart will be rendered by JS -->
+                  <canvas id="frequencyChartCanvas" height="180"></canvas>
+                </div>
+              </div>
+            </div>
+            
+            <div class="market-charts-container">
+              <div class="chart-tab-container">
+                <button class="btn-sm active">Market Price</button>
+                <button class="btn-sm">Battery SOC</button>
+                <button class="btn-sm">Grid Demand</button>
+              </div>
+              
+              <div class="chart-display">
+                <div class="chart-header">
+                  <h4>Romania Energy Market Price</h4>
+                  <div class="chart-controls">
+                    <span class="pulse-dot"></span>
+                    <span>Live Data</span>
+                  </div>
+                </div>
+                <div class="chart-container" id="marketPriceChart">
+                  <!-- Chart will be rendered by JS -->
+                  <canvas id="marketPriceChartCanvas" height="220"></canvas>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,255,0.8);"></span>
+                    <span>Current Price</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(255,255,255,0.5);"></span>
+                    <span>24h Average</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(255,150,0,0.8);"></span>
+                    <span>Buy Threshold</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,150,0.8);"></span>
+                    <span>Sell Threshold</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fund Strategy Panel -->
+          <div class="fund-strategy-panel">
+            <div class="panel-header">
+              <h3>Investment Strategy</h3>
+            </div>
+            
+            <div class="strategy-content">
+              <div class="metric-card">
+                <h4>Financial Highlights</h4>
+                <div class="metrics-grid">
+                  <div class="finance-metric">
+                    <div class="metric-value">€9.2M</div>
+                    <div class="metric-label">Annual Revenue</div>
+                  </div>
+                  <div class="finance-metric">
+                    <div class="metric-value">6.4 years</div>
+                    <div class="metric-label">Payback Period</div>
+                  </div>
+                  <div class="finance-metric">
+                    <div class="metric-value">€132.5M</div>
+                    <div class="metric-label">Projected NPV</div>
+                  </div>
+                  <div class="finance-metric">
+                    <div class="metric-value">18.4%</div>
+                    <div class="metric-label">IRR</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="metric-card">
+                <h4>Revenue Allocation</h4>
+                <div class="pie-chart-container">
+                  <canvas id="revenueAllocationChart" height="180"></canvas>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,255,0.8);"></span>
+                    <span>Frequency Regulation (45%)</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(0,255,150,0.8);"></span>
+                    <span>Energy Arbitrage (30%)</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(150,255,0,0.8);"></span>
+                    <span>Capacity Market (15%)</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-color" style="background: rgba(255,200,0,0.8);"></span>
+                    <span>Ancillary Services (10%)</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="metric-card">
+                <h4>Investment Opportunity</h4>
+                <p>The Romania Battery Flex Fund presents a unique opportunity to invest in grid-scale battery storage infrastructure across Romania, capitalizing on the country's rapidly evolving energy market and transition to renewable energy sources.</p>
+                <ul class="investment-highlights">
+                  <li><i class="fas fa-check-circle"></i> Secured grid connection agreements for 125MW</li>
+                  <li><i class="fas fa-check-circle"></i> 15-year revenue contracts with TSO</li>
+                  <li><i class="fas fa-check-circle"></i> Strategic locations near renewable generation</li>
+                  <li><i class="fas fa-check-circle"></i> Advanced AI-powered trading algorithms</li>
+                </ul>
+                <button class="btn-primary mt-3">Request Investment Memorandum</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="fund-notes">
+          <p><strong>Note:</strong> All projections are based on current market conditions and regulatory framework in Romania as of April 2025. Past performance is not indicative of future results. Investment in the Battery Flex Fund involves risks, including but not limited to regulatory changes, market volatility, and technology obsolescence.</p>
+        </div>
+      </section>
+
+      <!-- Financial Snapshot Section -->
+      <div class="energy-model-container snapshot-section">
+        <h2 class="terminal-heading">&gt; Financial Snapshot (50 MW case)</h2>
+        
+        < class="snapshot-overview">
+          <div class="snapshot-cards">
+            <div class="snapshot-card revenue">
+              <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="card-content">
+                <div class="metric-label">Gross Revenue (Yr 1)</div>
+                <div class="metric-value">€ 6.29 m</div>
+              </div>
+            </div>
+            <div class="snapshot-card costs">
+              <div class="card-icon"><i class="fas fa-tools"></i></div>
+              <div class="card-content">
+                <div class="metric-label">Fixed O&amp;M + Optimiser</div>
+                <div class="metric-value negative">– € 0.59 m</div>
+              </div>
+            </div>
+            <div class="snapshot-card ebitda">
+              <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
+              <div class="card-content">
+                <div class="metric-label">EBITDA</div>
+                <div class="metric-value">€ 5.70 m</div>
+                <div class="metric-progress">
+                  <div class="progress-bar" style="width: 90%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="snapshot-card debt">
+              <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+              <div class="card-content">
+                <div class="metric-label">Debt Service (60 % LTV @ 7 %, 8 y)</div>
+                <div class="metric-value negative">– € 0.83 m</div>
+              </div>
+            </div>
+            <div class="snapshot-card equity-cash">
+              <div class="card-icon"><i class="fas fa-wallet"></i></div>
+              <div class="card-content">
+                <div class="metric-label">Cash to Equity</div>
+                <div class="metric-value highlight">€ 4.87 m</div>
+              </div>
+            </div>
+            <div class="snapshot-card investment">
+              <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+              <div class="card-content">
+                <div class="metric-label">Equity Needed</div>
+                <div class="metric-value">€ 3.3 m</div>
+              </div>
+            </div>
+            <div class="snapshot-card return">
+              <div class="card-icon"><i class="fas fa-percentage"></i></div>
+              <div class="card-content">
+                <div class="metric-label">IRR / Payback</div>
+                <div class="metric-value highlight">32 % · 0.7 yr</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <!-- Roadmap Section -->
+      <section id="roadmap" class="visible">
+        <h2 class="terminal-heading">&gt; Roadmap</h2>
+        <div class="roadmap-container">
+          <div class="roadmap-timeline">
+            <div class="timeline-track"><div class="timeline-progress" style="width: 40%"></div></div>
+            <!-- Phase 1 -->
+            <div class="roadmap-phase completed">
+              <div class="phase-connector"><div class="connector-dot"></div><div class="connector-line"></div></div>
+              <div class="phase-content">
+                <div class="phase-header"><span class="phase-tag">Phase 1</span><span class="phase-status">Completed</span></div>
+                <h3 class="phase-title">Initial Deployment</h3>
+                <div class="phase-details">
+                  <div class="milestone-card"><div class="milestone-icon"><i class="fas fa-check-circle"></i></div><div class="milestone-info"><h4>Site Selection</h4><p>10 viable sites identified and assessed for technical feasibility</p></div><div class="milestone-date">Q1 2024</div></div>
+                  <div class="milestone-card"><div class="milestone-icon"><i class="fas fa-check-circle"></i></div><div class="milestone-info"><h4>Preliminary Design</h4><p>System architecture finalized for 10MW initial deployment</p></div><div class="milestone-date">Q2 2024</div></div>
+                  <div class="milestone-card"><div class="milestone-icon"><i class="fas fa-check-circle"></i></div><div class="milestone-info"><h4>Permitting Process</h4><p>All necessary permits secured for construction and grid connection</p></div><div class="milestone-date">Q3 2024</div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Phase 2 -->
+            <div class="roadmap-phase in-progress">
+              <div class="phase-connector"><div class="connector-dot pulse"></div><div class="connector-line"></div></div>
+              <div class="phase-content">
+                <div class="phase-header"><span class="phase-tag">Phase 2</span><span class="phase-status">In Progress</span></div>
+                <h3 class="phase-title">Scaling Operations</h3>
+                <div class="phase-details">
+                  <div class="milestone-card"><div class="milestone-icon"><i class="fas fa-check-circle"></i></div><div class="milestone-info"><h4>10MW Installation</h4><p>First 10MW battery system installed and connected to grid</p></div><div class="milestone-date">Q4 2024</div></div>
+                  <div class="milestone-card in-progress"><div class="milestone-icon"><i class="fas fa-cog fa-spin"></i></div><div class="milestone-info"><h4>Algorithm Deployment</h4><p>Advanced AI trading algorithms deployed and monitoring markets</p><div class="progress-indicator"><div class="progress-bar" style="width: 65%"></div><span class="progress-text">65%</span></div></div><div class="milestone-date">Q1 2025</div></div>
+                  <div class="milestone-card"><div class="milestone-icon"><i class="fas fa-hourglass-half"></i></div><div class="milestone-info"><h4>Performance Analysis</h4><p>First quarterly performance review and optimization cycle</p></div><div class="milestone-date">Q2 2025</div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Phase 3 -->
+            <div class="roadmap-phase upcoming">
+              <div class="phase-connector"><div class="connector-dot"></div><div class="connector-line"></div></div>
+              <div class="phase-content"><div class="phase-header"><span class="phase-tag">Phase 3</span><span class="phase-status">Upcoming</span></div><h3 class="phase-title">Full-Scale Deployment</h3><div class="phase-details"><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-battery-half"></i></div><div class="milestone-info"><h4>50MW Expansion</h4><p>Scale to 50MW total capacity across multiple sites</p></div><div class="milestone-date">Q3 2025</div></div><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-plug"></i></div><div class="milestone-info"><h4>Grid Integration</h4><p>Advanced grid services portfolio deployment</p></div><div class="milestone-date">Q4 2025</div></div><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-chart-line"></i></div><div class="milestone-info"><h4>Market Expansion</h4><p>Enter secondary European markets</p></div><div class="milestone-date">Q1 2026</div></div></div></div>
+            <!-- Phase 4 -->
+            <div class="roadmap-phase future"><div class="phase-connector"><div class="connector-dot"></div></div><div class="phase-content"><div class="phase-header"><span class="phase-tag">Phase 4</span><span class="phase-status">Future</span></div><h3 class="phase-title">Next Generation</h3><div class="phase-details"><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-microchip"></i></div><div class="milestone-info"><h4>AI Optimization Platform</h4><p>Launch platform as a service for third-party energy assets</p></div><div class="milestone-date">2026</div></div><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-solar-panel"></i></div><div class="milestone-info"><h4>Renewable Integration</h4><p>Direct pairing with wind and solar generation assets</p></div><div class="milestone-date">2026</div></div><div class="milestone-card"><div class="milestone-icon"><i class="fas fa-globe-europe"></i></div><div class="milestone-info"><h4>Global Expansion</h4><p>Strategic partnerships for international deployment</p></div><div class="milestone-date">2027</div></div></div></div>
+          </div>
+        </section>
+      <!-- Energy Dashboard -->
+      <section id="energy-dashboard" class="visible">
+        <h2 class="terminal-heading">&gt; Energy Dashboard</h2>
+        <p class="section-description">
+          Real-time monitoring of energy production, consumption, and blockchain
+          transactions across the network.
+        </p>
+        <div class="dashboard-container">
+          <div class="dashboard-panel">
+            <h3 class="panel-title">Energy Production</h3>
+            <div class="chart-container">
+              <!-- Add fallback content for Safari -->
+              <noscript>
+                <div class="chart-fallback">
+                  Chart cannot be displayed - JavaScript is required
+                </div>
+              </noscript>
+              <canvas id="energyProductionChart"></canvas>
+            </div>
+            <div class="legend">
+              <div class="legend-item">
+                <span
+                  class="legend-color"
+                  style="background-color: rgba(0, 255, 255, 0.5)"
+                ></span>
+                <span class="legend-label">Solar</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-color"
+                  style="background-color: rgba(0, 255, 0, 0.5)"
+                ></span>
+                <span class="legend-label">Wind</span>
+              </div>
+              <div class="legend-item">
+                <span
+                  class="legend-color"
+                  style="background-color: rgba(200, 0, 255, 0.5)"
+                ></span>
+                <span class="legend-label">Hydro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-panel">
+            <h3 class="panel-title">Network Activity</h3>
+            <div class="chart-container">
+              <!-- Add fallback content for Safari -->
+              <noscript>
+                <div class="chart-fallback">
+                  Chart cannot be displayed - JavaScript is required
+                </div>
+              </noscript>
+              <canvas id="networkActivityChart"></canvas>
+            </div>
+            <div class="real-time-stats">
+              <div class="rt-stat">
+                <span class="rt-stat-value" id="activeNodes">247</span>
+                <span class="rt-stat-label">Active Nodes</span>
+              </div>
+              <div class="rt-stat">
+                <span class="rt-stat-value" id="transactionRate">24.5/s</span>
+                <span class="rt-stat-label">TX Rate</span>
+              </div>
+              <div class="rt-stat">
+                <span class="rt-stat-value" id="networkHealth">98.7%</span>
+                <span class="rt-stat-label">Network Health</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-controls">
+          <div class="toggle-group">
+            <span class="toggle-label">View Mode:</span>
+            <button class="toggle-btn active" data-view="realtime">
+              Real-Time
+            </button>
+            <button class="toggle-btn" data-view="day">Day</button>
+            <button class="toggle-btn" data-view="week">Week</button>
+            <button class="toggle-btn" data-view="month">Month</button>
+          </div>
+          <button class="refresh-btn" id="refreshDashboard">
+            <i class="fas fa-sync-alt"></i> Refresh Data
+          </button>
+        </div>
+      </section>
+
+      <!-- Insert the moved sections here -->
+      <div class="blockchain-animation">
+        <svg viewBox="0 0 1280 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Block 1 - Genesis Block -->
+          <g class="blockchain-block">
+            <rect
+              class="block block-verified"
+              x="150"
+              y="70"
+              width="320"
+              height="95"
+              rx="5"
+              ry="5"
+            >
+              <animate
+                attributeName="stroke-width"
+                values="2;3;2"
+                dur="3s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <text class="block-text" x="170" y="95" font-size="14">
+              ENERGY NETWORK
+            </text>
+            <text class="block-text" x="170" y="120" font-size="14">
+              INIT CAPACITY: 500MW
+            </text>
+            <text class="hash-value" x="170" y="145" font-size="12">
+              0x000bfc3a...
+            </text>
+            <text class="block-text" x="170" y="165" font-size="14">
+              GRID: OPERATIONAL
+            </text>
+          </g>
+          <!-- Block 2 (Solar Energy Transaction) -->
+          <g class="blockchain-block">
+            <rect
+              class="block block-verified"
+              x="520"
+              y="70"
+              width="320"
+              height="95"
+              rx="5"
+              ry="5"
+            >
+              <animate
+                attributeName="opacity"
+                values="0.8;1;0.8"
+                dur="4s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <text class="block-text" x="540" y="95" font-size="14">
+              SOLAR ENERGY TX
+            </text>
+            <text class="block-text" x="540" y="120" font-size="14">
+              150KWH @ €0.12/KWH
+            </text>
+            <text class="hash-value" x="540" y="145" font-size="12">
+              0x7ae56f2b...
+            </text>
+            <text class="block-text" x="540" y="165" font-size="14">
+              SOURCE: PV ARRAY #42
+            </text>
+          </g>
+          <!-- Block 3 (Wind Energy Transaction) -->
+          <g class="blockchain-block">
+            <rect
+              class="block block-verified"
+              x="890"
+              y="70"
+              width="320"
+              height="95"
+              rx="5"
+              ry="5"
+            >
+              <animate
+                attributeName="stroke-dasharray"
+                values="0;5;0"
+                dur="5s"
+                repeatCount="indefinite"
+              />
+            </rect>
+            <text class="block-text" x="910" y="95" font-size="14">
+              WIND ENERGY TX
+            </text>
+            <text class="block-text" x="910" y="120" font-size="14">
+              280KWH @ €0.09/KWH
+            </text>
+            <text class="hash-value" x="910" y="145" font-size="12">
+              0x3df78a12...
+            </text>
+            <text class="block-text" x="910" y="165" font-size="14">
+              SOURCE: OFFSHORE #17
+            </text>
+          </g>
+        </svg>
+      </div>
+      <div class="energy-stats-banner">
+        <div class="stat-item" style="flex: 1 1 200px;">
+          <i class="fas fa-solar-panel fa-pulse"></i>
+          <span class="stat-value">487.2 MWh</span>
+          <span class="stat-label">Solar Generation</span>
+        </div>
+        <div class="stat-item" style="flex: 1 1 200px;">
+          <i class="fas fa-wind animated-wind"></i>
+          <span class="stat-value">315.8 MWh</span>
+          <span class="stat-label">Wind Generation</span>
+        </div>
+        <div class="stat-item" style="flex: 1 1 200px;">
+          <i class="fas fa-bolt animated-bolt"></i>
+          <span class="stat-value">€0.112/kWh</span>
+          <span class="stat-label">Avg Price</span>
+        </div>
+        <div class="stat-item" style="flex: 1 1 200px;">
+          <i class="fas fa-exchange-alt animated-exchange"></i>
+          <span class="stat-value">2,458</span>
+          <span class="stat-label">Transactions Today</span>
+        </div>
+      </div>
+
+      <section id="trading-simulator" class="visible">
+        <h2 class="terminal-heading">&gt; Energy Trading Simulator</h2>
+        <p class="section-description">
+          Experience decentralized energy trading with our interactive blockchain marketplace simulation.
+        </p>
+        
+        <div class="simulator-container">
+          <!-- Market Overview Panel -->
+          <div class="simulator-panel market-view">
+            <div class="panel-header">
+              <h3><i class="fas fa-chart-line"></i> Energy Market</h3>
+              <div class="real-time-label">
+                <span class="pulse-dot"></span> LIVE MARKET DATA
+              </div>
+            </div>
+            
+            <div class="market-stats-grid">
+              <div class="market-stat-card">
+                <div class="stat-icon"><i class="fas fa-coins"></i></div>
+                <div class="stat-data">
+                  <span class="stat-value">€2.47B</span>
+                  <span class="stat-label">Market Cap</span>
+                </div>
+              </div>
+              <div class="market-stat-card">
+                <div class="stat-icon"><i class="fas fa-exchange-alt"></i></div>
+                <div class="stat-data">
+                  <span class="stat-value">€147.3M</span>
+                  <span class="stat-label">24h Volume</span>
+                </div>
+              </div>
+              <div class="market-stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-data">
+                  <span class="stat-value">836</span>
+                  <span class="stat-label">Active Traders</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="price-chart-container">
+              <div class="chart-controls">
+                <div class="timeframe-selector">
+                  <button class="timeframe-btn active" data-time="1h">1H</button>
+                  <button class="timeframe-btn" data-time="24h">24H</button>
+                  <button class="timeframe-btn" data-time="7d">7D</button>
+                  <button class="timeframe-btn" data-time="30d">30D</button>
+                </div>
+                <div class="chart-type-toggle">
+                  <button class="chart-type-btn active" data-type="line">
+                    <i class="fas fa-chart-line"></i>
+                  </button>
+                  <button class="chart-type-btn" data-type="candle">
+                    <i class="fas fa-chart-bar"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Correct single chart wrapper -->
+              <div class="energy-price-chart">
+                <canvas id="energyPriceChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="energy-sources-container">
+            <h4 class="sources-title">Trading Pairs</h4>
+            <div class="energy-source source-solar" data-source="solar">
+              <div class="source-icon"><i class="fas fa-solar-panel"></i></div>
+              <div class="source-info">
+                <div class="source-name">Solar Energy</div>
+                <div class="source-price">€0.128/kWh</div>
+              </div>
+              <div class="source-trend up">
+                <i class="fas fa-arrow-up"></i> 1.4%
+              </div>
+            </div>
+            <div class="energy-source source-wind" data-source="wind">
+              <div class="source-icon"><i class="fas fa-wind"></i></div>
+              <div class="source-info">
+                <div class="source-name">Wind Energy</div>
+                <div class="source-price">€0.094/kWh</div>
+              </div>
+              <div class="source-trend down">
+                <i class="fas fa-arrow-down"></i> 0.8%
+              </div>
+            </div>
+            <div class="energy-source source-hydro" data-source="hydro">
+              <div class="source-icon"><i class="fas fa-water"></i></div>
+              <div class="source-info">
+                <div class="source-name">Hydro Energy</div>
+                <div class="source-price">€0.076/kWh</div>
+              </div>
+              <div class="source-trend up">
+                <i class="fas fa-arrow-up"></i> 0.3%
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trading Console Panel -->
+        <div class="simulator-panel trading-panel">
+          <div class="panel-header">
+            <h3><i class="fas fa-terminal"></i> Trading Console</h3>
+            <div class="wallet-quick-access">
+              <span class="wallet-balance">€10,000.00</span>
+              <span class="wallet-address tooltip" data-tooltip="Wallet ID: 0xF7...42A9">
+                <i class="fas fa-wallet"></i>
+              </span>
+            </div>
+          </div>
+          <div class="trading-interface">
+            <div class="trade-form">
+              <div class="form-header">
+                <div class="transaction-type-toggle" id="transactionTypeToggle">
+                  <button class="transaction-type-btn active" data-type="buy">BUY</button>
+                  <button class="transaction-type-btn" data-type="sell">SELL</button>
+                </div>
+              </div>
+              <div class="form-body">
+                <div class="form-group">
+                  <label for="energyType">Energy Type</label>
+                  <div class="custom-select">
+                    <select id="energyType">
+                      <option value="solar">Solar Energy</option>
+                      <option value="wind">Wind Energy</option>
+                      <option value="hydro">Hydro Energy</option>
+                    </select>
+                    <div class="select-icon"><i class="fas fa-chevron-down"></i></div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="energyAmount">Amount (kWh)</label>
+                  <div class="input-with-buttons">
+                    <button class="decrement-btn">–</button>
+                    <input type="number" id="energyAmount" min="1" value="100" />
+                    <button class="increment-btn">+</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="energyPrice">Price per kWh (€)</label>
+                  <div class="input-with-buttons">
+                    <button class="decrement-btn">–</button>
+                    <input type="number" id="energyPrice" min="0.01" step="0.01" value="0.12" />
+                    <button class="increment-btn">+</button>
+                  </div>
+                </div>
+                <div class="preset-values">
+                  <button class="preset-btn" data-amount="50">50 kWh</button>
+                  <button class="preset-btn" data-amount="100">100 kWh</button>
+                  <button class="preset-btn" data-amount="250">250 kWh</button>
+                  <button class="preset-btn" data-amount="500">500 kWh</button>
+                </div>
+              </div>
+              <div class="transaction-summary">
+                <div class="summary-item">
+                  <span class="summary-label">Total Cost:</span>
+                  <span class="summary-value" id="transactionTotal">€12.80</span>
+                </div>
+                <div class="summary-item">
+                  <span class="summary-label">Network Fee:</span>
+                  <span class="summary-value" id="networkFee">€0.32</span>
+                </div>
+                <div class="summary-item total">
+                  <span class="summary-label">Final Amount:</span>
+                  <span class="summary-value" id="finalAmount">€13.12</span>
+                </div>
+              </div>
+              <button type="button" class="execute-btn" id="executeTransaction">
+                <i class="fas fa-bolt"></i> EXECUTE TRANSACTION
+              </button>
+            </div>
+            <div class="transaction-history-container">
+              <h4><i class="fas fa-history"></i> Transaction History</h4>
+              <div class="transaction-history">
+                <ul id="transactionList">
+                  <li class="transaction-item buy">
+                    <div class="tx-indicator"></div>
+                    <div class="tx-content">
+                      <span class="tx-type">BUY</span>
+                      <span class="tx-details">150 kWh Solar @ €0.126</span>
+                    </div>
+                    <span class="tx-time">16:02:03</span>
+                  </li>
+                  <li class="transaction-item sell">
+                    <div class="tx-indicator"></div>
+                    <div class="tx-content">
+                      <span class="tx-type">SELL</span>
+                      <span class="tx-details">80 kWh Wind @ €0.095</span>
+                    </div>
+                    <span class="tx-time">15:58:41</span>
+                  </li>
+                  <li class="transaction-item buy">
+                    <div class="tx-indicator"></div>
+                    <div class="tx-content">
+                      <span class="tx-type">BUY</span>
+                      <span class="tx-details">200 kWh Hydro @ €0.076</span>
+                    </div>
+                    <span class="tx-time">15:45:22</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blockchain Visualization Panel -->
+        <div class="simulator-panel blockchain-panel">
+          <div class="panel-header">
+            <h3><i class="fas fa-cubes"></i> Transaction Blockchain</h3>
+            <div class="blockchain-controls">
+              <button class="explorer-btn" id="zoomInTrading"><i class="fas fa-search-plus"></i></button>
+              <button class="explorer-btn" id="zoomOutTrading"><i class="fas fa-search-minus"></i></button>
+              <button class="explorer-btn" id="resetViewTrading"><i class="fas fa-sync"></i></button>
+            </div>
+          </div>
+          <div class="blockchain-visualization">
+            <div id="tradingBlockchain3DContainer" class="trading-blockchain-container"></div>
+            <div id="tradingBlockInfoPanel" class="block-info-panel">
+              <div class="block-info-header">
+                <h4>Block Details</h4>
+                <span class="block-number">#3487621</span>
+              </div>
+              <div class="block-info-content">
+                <!-- ...existing block info rows... -->
+              </div>
+            </div>
+            <div class="network-status">
+              <div class="status-indicator">
+                <span class="pulse-dot green"></span>
+                <span class="status-text">Network Status: Operational</span>
+              </div>
+              <div class="latency-indicator">
+                <span class="latency-label">Block Time:</span>
+                <span class="latency-value">3.2s</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Project Timeline Visualization -->
+      <section id="timeline-visualization" class="visible">
+        <h2 class="terminal-heading">&gt; Project Timeline</h2>
+        <p class="section-description">
+          Explore the chronological development of Sever Silaghi's innovative
+          research and implementation projects.
+        </p>
+        <div class="timeline-filters">
+          <button class="filter-btn active" data-filter="all">
+            All Projects
+          </button>
+          <button class="filter-btn" data-filter="research">Research</button>
+          <button class="filter-btn" data-filter="implementation">
+            Implementation
+          </button>
+          <button class="filter-btn" data-filter="energy">Energy</button>
+          <button class="filter-btn" data-filter="blockchain">Blockchain</button>
+        </div>
+        <div class="timeline-container">
+          <!-- Timeline axis -->
+          <div class="timeline-track">
+            <div class="timeline-axis"></div>
+          </div>
+          <!-- Timeline nodes -->
+          <div
+            class="timeline-node"
+            data-year="2012"
+            data-categories="research"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2012</div>
+              <h3 class="node-title">Energy Systems Market Research</h3>
+              <p class="node-description">
+                Initial research into renewable energy markets and potential
+                technology integration. Conducted comprehensive market analysis
+                to identify key renewable energy trends and technologies with
+                highest growth potential.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Market Analysis</span>
+                <span class="tech-tag">Renewables</span>
+                <span class="tech-tag">Trend Forecasting</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2014"
+            data-categories="research,energy"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2014</div>
+              <h3 class="node-title">Smart Grid Integration Study</h3>
+              <p class="node-description">
+                Research on integrating renewable energy sources into existing
+                power grids using smart technology. Developed algorithmic models
+                for demand response and grid balancing with high renewable
+                penetration.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Smart Grid</span>
+                <span class="tech-tag">Renewables</span>
+                <span class="tech-tag">AI Forecasting</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2016"
+            data-categories="research,blockchain"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2016</div>
+              <h3 class="node-title">Blockchain Energy Trading Concept</h3>
+              <p class="node-description">
+                Development of theoretical framework for peer-to-peer energy
+                trading using blockchain technology. Authored white paper with
+                "Decentralizing Energy Markets" which gained significant
+                attention in the industry.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Blockchain</span>
+                <span class="tech-tag">P2P Trading</span>
+                <span class="tech-tag">Smart Contracts</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2018"
+            data-categories="implementation,energy,blockchain"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2018</div>
+              <h3 class="node-title">SEVER Network Prototype</h3>
+              <p class="node-description">
+                First implementation of decentralized energy trading platform
+                with real-world test cases. Successfully deployed in a small
+                neighborhood with 37 households, enabling P2P energy trading
+                with 28% cost savings for participants.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Ethereum</span>
+                <span class="tech-tag">Smart Contracts</span>
+                <span class="tech-tag">DApps</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2020"
+            data-categories="implementation,energy"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2020</div>
+              <h3 class="node-title">Microgrid Pilot Project</h3>
+              <p class="node-description">
+                Implementation of self-sufficient energy microgrid with energy
+                blockchain-based management system. Deployed in a rural
+                community in Romania, the system achieved 92% renewable energy
+                self-sufficiency and improved grid resilience.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Microgrid</span>
+                <span class="tech-tag">IoT Sensors</span>
+                <span class="tech-tag">Grid Resilience</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2022"
+            data-categories="research,implementation,blockchain"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2022</div>
+              <h3 class="node-title">Cross-Border Energy Protocol</h3>
+              <p class="node-description">
+                Developed innovative protocol for enabling energy trading across
+                national borders using blockchain```html
+                -based certificates of origin
+                and automated regulatory compliance. Tested successfully between
+                Austria and Germany.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Cross-Border</span>
+                <span class="tech-tag">Regulatory Tech</span>
+                <span class="tech-tag">Energy Certificates</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2023"
+            data-categories="implementation,blockchain,energy"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2023</div>
+              <h3 class="node-title">Energy Tokenization Platform</h3>
+              <p class="node-description">
+                Full-scale platform for tokenizing renewable energy production
+                and enabling seamless trading. Launched with 5 major energy
+                producers and attracted over €50 million in tokenized renewable
+                energy assets within first six months.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Tokenization</span>
+                <span class="tech-tag">Smart Contracts</span>
+                <span class="tech-tag">Asset Management</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2024"
+            data-categories="implementation,blockchain,energy"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2024</div>
+              <h3 class="node-title">AI-Powered Grid Optimization</h3>
+              <p class="node-description">
+                Integration of advanced machine learning algorithms with
+                blockchain-based grid management, enabling real-time
+                optimization of energy distribution and pricing. System reduced
+                grid congestion by 42% and lowered peak demand costs by 35%.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Machine Learning</span>
+                <span class="tech-tag">Grid Optimization</span>
+                <span class="tech-tag">Real-time Trading</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="timeline-node"
+            data-year="2025"
+            data-categories="research,implementation,blockchain,energy"
+          >
+            <div class="node-content">
+              <div class="node-dot"></div>
+              <div class="node-year">2025</div>
+              <h3 class="node-title">SEVER Network Global Launch</h3>
+              <p class="node-description">
+                Worldwide deployment of the SEVER Network with cross-border
+                energy trading capabilities. Currently operational in 12
+                countries with over 500,000 connected energy prosumers and 50+
+                institutional energy providers.
+              </p>
+              <div class="node-tech-tags">
+                <span class="tech-tag">Global Scale</span>
+                <span class="tech-tag">Cross-border Trading</span>
+                <span class="tech-tag">Enterprise Integration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal Energy Calculator Section -->
+      <section id="energy-calculator" class="visible">
+        <h2 class="terminal-heading">&gt; Energy Calculator</h2>
+        <p class="section-description">
+          Calculate your energy requirements and find the optimal renewable
+          energy solution for your needs.
+        </p>
+        <div class="calculator-container">
+          <div class="calculator-panel">
+            <h3 class="panel-title">Energy Requirements</h3>
+            <form id="energyCalculatorForm">
+              <div class="form-group">
+                <label for="propertyType">Property Type</label>
+                <select id="propertyType" name="propertyType">
+                  <option value="apartment">Apartment</option>
+                  <option value="house">House</option>
+                  <option value="office">Office</option>
+                  <option value="commercial">Commercial Building</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="propertySize">Property Size (m²)</label>
+                <input
+                  type="number"
+                  id="propertySize"
+                  name="propertySize"
+                  min="20"
+                  value="100"
+                />
+              </div>
+              <div class="form-group">
+                <label for="occupants">Number of Occupants</label>
+                <input
+                  type="number"
+                  id="occupants"
+                  name="occupants"
+                  min="1"
+                  value="3"
+                />
+              </div>
+              <div class="form-group">
+                <fieldset>
+                  <legend id="appliancesLabel">
+                    High-Consumption Appliances
+                  </legend>
+                  <div class="checkbox-group" aria-labelledby="appliancesLabel">
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="appliances" value="heating" />
+                      Electric Heating
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="appliances" value="aircon" />
+                      Air Conditioning
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="appliances" value="pool" />
+                      Swimming Pool
+                    </label>
+                    <label class="checkbox-label">
+                      <input type="checkbox" name="appliances" value="ev" />
+                      Electric Vehicle
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="form-group">
+                <label for="region">Geographic Region</label>
+                <select id="region" name="region">
+                  <option value="north">Northern Europe</option>
+                  <option value="central">Central Europe</option>
+                  <option value="south">Southern Europe</option>
+                  <option value="eastern">Eastern Europe</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budgetRange">Investment Budget (€)</label>
+                <div class="range-slider-container">
+                  <input
+                    type="range"
+                    min="1000"
+                    max="50000"
+                    step="1000"
+                    value="10000"
+                    id="budgetRange"
+                    name="budgetRange"
+                  />
+                  <div class="range-value" id="budgetRangeValue">€10,000</div>
+                </div>
+              </div>
+              <button type="button" id="calculateButton" class="calculator-btn">
+                <i class="fas fa-calculator"></i> Calculate Solutions
+              </button>
+            </form>
+          </div>
+          <div class="results-panel">
+            <h3 class="panel-title">Energy Analysis</h3>
+            <div class="results-content" id="calculationResults">
+              <div class="estimate-header">
+                <div class="estimate-title">Your Energy Profile</div>
+                <div class="estimate-consumption">
+                  <span id="estimatedConsumption">4,850</span> kWh/year
+                </div>
+              </div>
+              <div class="consumption-chart-container">
+                <canvas id="consumptionBreakdownChart"></canvas>
+              </div>
+              <h4>Recommended Solutions</h4>
+              <div class="recommended-solutions">
+                <div class="solution-card primary-solution">
+                  <div class="solution-header">
+                    <div class="solution-icon">
+                      <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="solution-title">Solar PV System</div>
+                    <div class="solution-match">94% Match</div>
+                  </div>
+                  <div class="solution-details">
+                    <div class="detail-row">
+                      <span class="detail-label">System Size:</span>
+                      <span class="detail-value">4.2 kWp</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Est. Production:</span>
+                      <span class="detail-value">4,600 kWh/year</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Cost Range:</span>
+                      <span class="detail-value">€8,200 - €9,500</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Payback Period:</span>
+                      <span class="detail-value">6-8 years</span>
+                    </div>
+                  </div>
+                  <div class="solution-footer">
+                    <button class="solution-btn">View Details</button>
+                  </div>
+                </div>
+                <div class="solution-card">
+                  <div class="solution-header">
+                    <div class="solution-icon">
+                      <i class="fas fa-battery-full"></i>
+                    </div>
+                    <div class="solution-title">Battery Storage</div>
+                    <div class="solution-match">85% Match</div>
+                  </div>
+                  <div class="solution-details">
+                    <div class="detail-row">
+                      <span class="detail-label">Battery Size:</span>
+                      <span class="detail-value">10 kWh</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Self-Consumption:</span>
+                      <span class="detail-value">+35%</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Cost Range:</span>
+                      <span class="detail-value">€7,500 - €9,200</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Compatible with:</span>
+                      <span class="detail-value">Solar PV, Grid</span>
+                    </div>
+                  </div>
+                  <div class="solution-footer">
+                    <button class="solution-btn">View Details</button>
+                  </div>
+                </div>
+                <div class="solution-card">
+                  <div class="solution-header">
+                    <div class="solution-icon">
+                      <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="solution-title">SEVER Network Integration</div>
+                    <div class="solution-match">78% Match</div>
+                  </div>
+                  <div class="solution-details">
+                    <div class="detail-row">
+                      <span class="detail-label">Trading Potential:</span>
+                      <span class="detail-value">1,200 kWh/year</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Estimated Savings:</span>
+                      <span class="detail-value">€280/year</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Implementation:</span>
+                      <span class="detail-value">Smart Meter + Node</span>
+                    </div>
+                    <div class="detail-row">
+                      <span class="detail-label">Cost:</span>
+                      <span class="detail-value">€650 + Network Fees</span>
+                    </div>
+                  </div>
+                  <div class="solution-footer">
+                    <button class="solution-btn">View Details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="visible">
+        <h2 class="terminal-heading">&gt; Contact</h2>
+        <p class="section-description">
+          Get in touch to discuss potential collaborations, energy solutions, or
+          business opportunities.
+        </p>
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-header">
+                <i class="fas fa-building"></i>
+                <h3>Business Contact</h3>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fas fa-user"></i>
+                  <span>Sever Silaghi</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>contact@sever-silaghi.com</span>
+                </div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-header">
+                <i class="fas fa-network-wired"></i>
+                <h3>SEVER Network</h3>
+              </div>
+              <div class="contact-details">
+                <div class="detail-item">
+                  <i class="fas fa-globe"></i>
+                  <span>sever.network</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-envelope"></i>
+                  <span>info@sever.network</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Energy Innovation Center, Bucharest</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="social-connections">
+            <h3>Connect Online</h3>
+            <div class="social-icons">
+              <a
+                target="_blank"
+                href="https://ro.linkedin.com/in/sever-silaghi-4a69a2153"
+                class="social-icon"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/seversilaghi/"
+                class="social-icon"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-container">
+          <form id="contactForm" action="#" method="post">
+            <div class="form-group">
+              <label for="name">name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">subject</label>
+              <select id="subject" name="subject">
+                <option value="business">Business Opportunity</option>
+                <option value="energy">Energy Solution Inquiry</option>
+                <option value="collaboration">Collaboration Proposal</option>
+                <option value="general">General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              SEND_MESSAGE <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+    </div> <!-- close .container -->
+
+    <!-- Footer -->
+    <footer id="siteFooter">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3 class="footer-title">
+            SEVER<span class="accent-dot">.</span>NETWORK
+          </h3>
+          <p class="footer-tagline">
+            Decentralizing Energy for a Sustainable Future
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="link-column">
+            <h4>Innovation</h4>
+            <ul>
+              <li><a href="#">Energy Solutions</a></li>
+              <li><a href="#">Blockchain Tech</a></li>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Publications</a></li>
+            </ul>
+          </div>
+          <div class="link-column">
+            <h4>Projects</h4>
+            <ul>
+              <li><a href="#">SEVER Network</a></li>
+              <li><a href="#">Energy Trading Platform</a></li>
+              <li><a href="#">Microgrid Implementation</a></li>
+              <li><a href="#">Smart Grid Solutions</a></li>
+            </ul>
+          </div>
+          <div class="link-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">Technical Papers</a></li>
+              <li><a href="#">Energy Guides</a></li>
+              <li><a href="#">Blockchain Fundamentals</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2025 Sever Silaghi. All rights reserved.</p>
+        <div class="footer-info">
+          <span id="footerDateTime">2025-04-11 16:09:29</span>
+          <span class="user-info"
+            >User: <span class="user-name">Pridak774</span></span
+          >
+        </div>
+      </div>
+    </footer>
+    <script src="bg-animations/common-bg.js"></script>
+    <script src="js/simulator.js"></script>
+    <script src="js/trading-simulator.js"></script>
+    <script src="js/blockchain-visualizer.js"></script>
+    <script src="js/battery-flex-fund.js"></script>
+    <script src="js/battery-trading-model.js" defer></script>
+    <script src="js/trading-simulator-init.js" defer></script>
+  </body>
+</html>
+```
